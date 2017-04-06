@@ -1,3 +1,5 @@
+// Author Berney Parker
+// http://codepen.io/barney-parker/pen/OPyYqy
 var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"];
 
 var startAngle = 0;
