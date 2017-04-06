@@ -15,3 +15,7 @@
     background: linear-gradient(45deg, #0059a8 24%,#009ec3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0059a8', endColorstr='#009ec3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
+ img.money_pouch {
+	width:25px;
+	height:25px;
+}
