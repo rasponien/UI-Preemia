@@ -17,7 +17,7 @@ var ctx;
 
 function spinMusicStart()
 {
-   document.getElementById("embed").innerHTML="<embed src='../wheel.mp3' autostart=true loop=false volume=100 hidden=true>";
+   document.getElementById("embed").innerHTML="<embed src='wheel.mp3' autostart=true loop=false volume=100 hidden=true>";
 }
 
 function byte2Hex(n) {
