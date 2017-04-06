@@ -13,7 +13,7 @@ var spinTimeTotal = 0;
 var ctx;
 //
 //document.getElementById("spin").addEventListener("click", spin);
-
+$("#balance").text("6500");
 
 function spinMusicStart(){
    var start_wheel_sound = new Audio("sound/wheel.mp3");
@@ -99,10 +99,11 @@ function drawRouletteWheel() {
 }
 
 function spin() {
-  spinAngleStart = Math.random() * 10 + 10;
-  spinTime = 0;
-  spinTimeTotal = Math.random() * 3 + 4 * 1000;
-  rotateWheel();
+	$("#balance").text(parseInt($("#balance").text())-500);
+	spinAngleStart = Math.random() * 10 + 10;
+	spinTime = 0;
+	spinTimeTotal = Math.random() * 3 + 4 * 1000;
+	rotateWheel();
 }
 
 function rotateWheel() {
@@ -127,6 +128,7 @@ function stopRotateWheel() {
   var text = options[index];
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
+  addWinningsToBalance(text);
 }
 
 
@@ -136,4 +138,27 @@ function easeOut(t, b, c, d) {
   return b+c*(tc + -3*ts + 3*t);
 }
 
+function addWinningsToBalance(text){
+	
+	if(text!="Lose"){
+		var res =  parseInt(text.substring(1, text.length));	
+		var balance = parseInt($("#balance").text());
+		$("#balance").text(balance+res);
+		
+		$('#balance').each(function () {
+			$(this).prop('Counter',balance).animate({
+				Counter: $(this).text()
+			}, {
+				duration: 1000,
+				easing: 'swing',
+				step: function (now) {
+					$(this).text(Math.ceil(now));
+				}
+			});
+		});
+	
+	}
+}
+
 drawRouletteWheel();
+
