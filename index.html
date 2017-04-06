@@ -6,21 +6,21 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
   </head>
-  <body>
+  <body class="bg">
   <div class="container">
-      <div class="col">
+      <div class="">
           <div id="embed"></div>
        <!--      <input type="button" value="spin" style="float:left;" id='spin' />-->
 
-          <div id="canvas_container col-md-12">
-              <canvas id="canvas" width="500" height="500"></canvas>
+          <div id="canvas_container" class="row align-items-center">
+              <span class="col-lg-2 col-md-1 col-sm-1"></span><canvas id="canvas"class="col-lg-8 col-md-10 col-sm-10" width="500" height="500"></canvas>
           </div>
 
           <button type="button" class="btn btn-primary" value="spin" style="float:left;" id='spin' onclick="spin();spinMusicStart()">Click Me!</button>
       </div>
   </div>
 
-  <script src="js/wheel.js"></script>
+  <script src="wheel.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   </body>
