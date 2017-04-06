@@ -7,18 +7,17 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
   </head>
   <body>
-  <div class="container">
-      <div class="col">
-          <div id="embed"></div>
-       <!--      <input type="button" value="spin" style="float:left;" id='spin' />-->
+	<div class="container">
+		<div class="col">
+			<!--      <input type="button" value="spin" style="float:left;" id='spin' />-->
+			<p>Balance:</p><span id="balance">5000</span>
+			<div id="canvas_container col-md-12">
+				<canvas id="canvas" width="500" height="500"></canvas>
+			</div>
 
-          <div id="canvas_container col-md-12">
-              <canvas id="canvas" width="500" height="500"></canvas>
-          </div>
-
-          <button type="button" class="btn btn-primary" value="spin" style="float:left;" id='spin' onclick="spin();spinMusicStart()">Click Me!</button>
-      </div>
-  </div>
+			<button type="button" class="btn btn-primary" value="spin" style="float:left;" id='spin' onclick="spin();spinMusicStart()">Click Me!</button>
+		</div>
+	</div>
 
   <script src="js/wheel.js"></script>
   <script src="js/jquery.js"></script>

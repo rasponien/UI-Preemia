@@ -15,9 +15,10 @@ var ctx;
 //document.getElementById("spin").addEventListener("click", spin);
 
 
-function spinMusicStart()
-{
-   document.getElementById("embed").innerHTML="<embed src='../wheel.mp3' autostart=true loop=false volume=100 hidden=true>";
+function spinMusicStart(){
+   var start_wheel_sound = new Audio("sound/wheel.mp3");
+   start_wheel_sound.play();
+   console.log("Spin music start");
 }
 
 function byte2Hex(n) {
@@ -123,10 +124,11 @@ function stopRotateWheel() {
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
-  var text = options[index]
+  var text = options[index];
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
 }
+
 
 function easeOut(t, b, c, d) {
   var ts = (t/=d)*t;
