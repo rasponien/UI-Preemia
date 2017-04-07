@@ -50,6 +50,8 @@ Number.prototype.mod = function (n) {
 // WHEEL!
 var wheel = {
 
+    
+    
     timerHandle: 0,
     timerDelay: 25,
 
@@ -62,8 +64,8 @@ var wheel = {
 
     canvasContext: $("#canvas")[0].getContext("2d"),
 
-    colors: ['#ffff00', '#ffc700', '#ff9100', '#ff6301', '#ff0000', '#c6037e',
-             '#713697', '#444ea1', '#2772b2', '#0297ba', '#008e5b', '#8ac819'],
+    colorIncrementor: 0,
+    colors: ['#000', '#f00', '#060'],
 
     segments: ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"],
     currentSegment: null,
@@ -141,7 +143,6 @@ var wheel = {
 
     init: function (optionList) {
         try {
-            wheel.initWheel();
             wheel.initCanvas();
             wheel.draw();
 
@@ -161,9 +162,6 @@ var wheel = {
         wheel.canvasContext = canvas.getContext("2d");
     },
 
-    initWheel: function () {
-        shuffle(wheel.colors);
-    },
 
     // Called when segments have changed
     update: function () {
@@ -259,7 +257,13 @@ var wheel = {
         wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.strokeStyle = "#000"
 
-        wheel.canvasContext.fillStyle = wheel.colors[key];
+        
+        if (wheel.colorIncrementor == wheel.colors.length) {
+            wheel.colorIncrementor = 0;   
+        }
+        wheel.canvasContext.fillStyle = wheel.colors[wheel.colorIncrementor];
+        wheel.colorIncrementor++;
+        
         wheel.canvasContext.fill();
 
         var gradient = wheel.canvasContext.createRadialGradient(
@@ -281,7 +285,7 @@ var wheel = {
 
 
         //text style
-        wheel.canvasContext.fillStyle = '#000000';
+        wheel.canvasContext.fillStyle = '#fff';
         wheel.canvasContext.fillText(segmentValue, wheel.size / 2 + 20, 0);
 
         wheel.canvasContext.restore();
@@ -293,26 +297,26 @@ var wheel = {
 
         wheel.canvasContext.textBaseline = "middle";
         wheel.canvasContext.textAlign = "center";
-        
+
         wheel.canvasContext.font = "25px Arial";
         for (var segment = 1; segment <= wheel.segments.length; segment++) {
             var angle = (Math.PI * 2) * (segment / wheel.segments.length) + wheel.angleCurrent;
             wheel.drawSegment(segment - 1, lastAngle, angle);
             lastAngle = angle;
         }
-        
-        
+
+
         // Draw a center circle
         wheel.canvasContext.beginPath();
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
         wheel.canvasContext.closePath();
-        
+
         wheel.canvasContext.fillStyle = '#f00';
         wheel.canvasContext.fill();
-        
+
         wheel.canvasContext.beginPath();
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
-        
+
         wheel.canvasContext.beginPath();
         wheel.canvasContext.lineWidth = 15;
         wheel.canvasContext.shadowBlur = 90
@@ -335,31 +339,32 @@ var wheel = {
         wheel.canvasContext.lineWidth = 10;
         wheel.canvasContext.strokeStyle = '#222';
         wheel.canvasContext.stroke();
-        
-        
-        
+
+
+        /*
         //text style
         wheel.canvasContext.fillStyle = '#000000';
-        wheel.canvasContext.fillText("SPIN", wheel.centerX, wheel.centerY-40);
+        wheel.canvasContext.fillText("SPIN", wheel.centerX, wheel.centerY - 40);
         wheel.canvasContext.fillText("TO", wheel.centerX, wheel.centerY);
-        wheel.canvasContext.fillText("WIN", wheel.centerX, wheel.centerY+40);
-        //wheel.neonLightEffect();
-        
-        
+        wheel.canvasContext.fillText("WIN", wheel.centerX, wheel.centerY + 40);
+        */
+
     },
 
 
     neonLightEffect: function () {
+
+
         var text = "a";
         var font = "10px Futura, Helvetica, sans-serif";
-        var jitter = 0; // the distance of the maximum jitter
-        var offsetX = 0;
-        var offsetY = 0;
+        var jitter = 50; // the distance of the maximum jitter
+        var offsetX = wheel.centerX;
+        var offsetY = wheel.centerY;
         var blur = 10;
         // save state
         wheel.canvasContext.save();
         wheel.canvasContext.font = font;
-        
+
         // calculate width + height of text-block
         var metrics = wheel.canvasContext.measureText(text);
         // create clipping mask around text-effect
@@ -426,7 +431,7 @@ window.onload = function () {
     $("#balance").text("6500");
     wheel.init();
 
-
+    
     wheel.update();
 
 }
