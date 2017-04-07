@@ -46,26 +46,6 @@ Number.prototype.mod = function (n) {
     return ((this % n) + n) % n;
 }
 
-// List of venues. These are foursquare IDs, with the idea that eventually it'll tie in 
-venues = {
-    "116208": "Jerry's Subs and Pizza",
-    "66271": "Starbucks",
-    "5518": "Ireland's Four Courts",
-    "392360": "Five Guys",
-    "2210952": "Uptown Cafe",
-    "207306": "Corner Bakery Courthouse",
-    "41457": "Delhi Dhaba",
-    "101161": "TNR Cafe",
-    "257424": "Afghan Kabob House",
-    "512060": "The Perfect Pita",
-    "66244": "California Tortilla",
-    "352867": "Pho 75 - Rosslyn",
-    "22493": "Ragtime",
-    "268052": "Subway",
-    "5665": "Summers Restaurant & Sports Bar",
-    "129724": "Cosi",
-    "42599": "Ray's Hell Burger"
-};
 
 // WHEEL!
 var wheel = {
@@ -213,169 +193,165 @@ var wheel = {
 
 
     },
-
     clear: function () {
-        var ctx = wheel.canvasContext;
-
-        ctx.clearRect(0, 0, 1000, 800);
+        wheel.canvasContext.clearRect(0, 0, 1000, 800);
     },
-
     drawNeedle: function () {
-        var ctx = wheel.canvasContext;
-        var centerX = wheel.centerX;
-        var centerY = wheel.centerY;
-        var size = wheel.size;
 
-        ctx.lineWidth = 10;
-        ctx.strokeStyle = '#888';
-        ctx.fillStyle = '#000';
-
-        ctx.beginPath();
-
-        ctx.moveTo(centerX + 30, centerY - size - 30);
-        ctx.lineTo(centerX - 30, centerY - size - 30);
-        ctx.lineTo(centerX, centerY - size + 30);
-        ctx.closePath();
-
-        ctx.stroke();
-        ctx.fill();
-
-        // Which segment is being pointed to?
-
-        var arc = Math.PI / (wheel.segments.length / 2);
-
-        var degrees = (wheel.angleCurrent * 180 / Math.PI) + 90;
-        var arcd = arc * 180 / Math.PI;
-        var index = Math.floor((360 - degrees % 360) / arcd);
-
-        wheel.setCurrentSegment(wheel.segments[index]);
-
-
-        // Now draw the winning name
-        ctx.textAlign = "left";
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = '#000000';
-        ctx.font = "2em Arial";
-        ctx.fillText(wheel.segments[index], centerX + 160, centerY - size + 10);
-    },
-
-    drawSegment: function (key, lastAngle, angle) {
-        var ctx = wheel.canvasContext;
-        var centerX = wheel.centerX;
-        var centerY = wheel.centerY;
-        var size = wheel.size;
-
-        var segments = wheel.segments;
-        var len = wheel.segments.length;
-        var colors = wheel.seg_color;
-
-        var value = wheel.segments[key];
-
-        ctx.save();
-        ctx.beginPath();
-
-
-
-        // Start in the centre
-        ctx.moveTo(centerX, centerY);
-        ctx.arc(centerX, centerY, size, lastAngle, angle, false); // Draw a arc around the edge
-        ctx.lineTo(centerX, centerY); // Now draw a line back to the centre
-
-        //ctx.lineTo()
-        // Clip anything that follows to this area
-        //ctx.clip(); // It would be best to clip, but we can double performance without it
-        ctx.closePath();
-
-
-        // Assuming your canvas element is ctx
-        ctx.shadowColor = "#000" // string
-            //Color of the shadow;  RGB, RGBA, HSL, HEX, and other inputs are valid.
-        ctx.shadowOffsetX = 0; // integer
-        //Horizontal distance of the shadow, in relation to the text.
-        ctx.shadowOffsetY = 0; // integer
-        //Vertical distance of the shadow, in relation to the text.
-        ctx.shadowBlur = 20; // integer
-        //Blurring effect to the shadow, the larger the value, the greater the blur.
-        ctx.strokeStyle = "#000"
-
-
-
-        ctx.fillStyle = wheel.colors[key];
-        ctx.fill();
-        ctx.stroke();
-        var arc = Math.PI / (len / 2);
-        // Now draw the text
-        ctx.save(); // The save ensures this works on Android devices
-        ctx.translate(centerX + Math.cos(lastAngle + arc / 2) * 50,
-            centerY + Math.sin(lastAngle + arc / 2) * 50);
-        ctx.rotate((lastAngle + angle) / 2);
-
-        ctx.fillStyle = '#000000';
-        ctx.fillText(value.substr(0, 20), size / 2 + 20, 0);
-        ctx.restore();
-    },
-
-    drawWheel: function () {
-        var ctx = wheel.canvasContext;
-
-        var angleCurrent = wheel.angleCurrent;
-        var lastAngle = angleCurrent;
-
-        var segments = wheel.segments;
-        var len = wheel.segments.length;
-        var colors = wheel.colors;
-        var colorsLen = wheel.colors.length;
-
-        var centerX = wheel.centerX;
-        var centerY = wheel.centerY;
-        var size = wheel.size;
-
-        var PI2 = Math.PI * 2;
-
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = '#000000';
-        ctx.textBaseline = "middle";
-        ctx.textAlign = "center";
-        ctx.font = "1.4em Arial";
-
-        for (var i = 1; i <= len; i++) {
-            var angle = PI2 * (i / len) + angleCurrent;
-            wheel.drawSegment(i - 1, lastAngle, angle);
-            lastAngle = angle;
-        }
-        // Draw a center circle
+        //shape
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.arc(centerX, centerY, 100, 0, PI2, true);
+
+        wheel.canvasContext.moveTo(wheel.centerX, wheel.centerY - wheel.size);
+        wheel.canvasContext.lineTo(wheel.centerX - 20, wheel.centerY - wheel.size - 10);
+        wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY - wheel.size + 30);
+        wheel.canvasContext.lineTo(wheel.centerX + 20, wheel.centerY - wheel.size - 10);
+
         wheel.canvasContext.closePath();
 
 
+        //style
+        wheel.canvasContext.lineWidth = 7;
+        wheel.canvasContext.strokeStyle = '#888';
+        wheel.canvasContext.stroke();
 
         wheel.canvasContext.fillStyle = '#000';
-        wheel.canvasContext.strokeStyle = '#fff';
-        wheel.canvasContext.shadowBlur = 50;
-        wheel.canvasContext.shadowColor = "white";
-        wheel.canvasContext.lineWidth = 5;
         wheel.canvasContext.fill();
+
+
+        //logic - which value needle points to
+        var arc = Math.PI / (wheel.segments.length / 2);
+        var degrees = (wheel.angleCurrent * 180 / Math.PI) + 90;
+        var arcInDegrees = arc * 180 / Math.PI;
+        var index = Math.floor((360 - degrees % 360) / arcInDegrees);
+        wheel.setCurrentSegment(wheel.segments[index]);
+
+
+        //needle text - võtame selle kidlasti ära (hetkel jätan sisse, saab vaadata)
+        wheel.canvasContext.textAlign = "left";
+        wheel.canvasContext.textBaseline = "middle";
+        wheel.canvasContext.fillStyle = '#000000';
+        wheel.canvasContext.font = "2em Arial";
+        wheel.canvasContext.fillText(wheel.segments[index], wheel.centerX + 160, wheel.centerY - wheel.size + 10);
+    },
+
+    drawSegment: function (key, lastAngle, angle) {
+
+        var segmentValue = wheel.segments[key];
+        var arc = Math.PI / (wheel.segments.length / 2);
+
+        wheel.canvasContext.save();
+
+
+        //shape
+        wheel.canvasContext.beginPath();
+
+        wheel.canvasContext.moveTo(wheel.centerX, wheel.centerY);
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.size, lastAngle, angle, false);
+        wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY); // Now draw a line back to the centre
+
+        wheel.canvasContext.closePath();
+
+
+        //style
+        wheel.canvasContext.shadowColor = "#000"
+        wheel.canvasContext.shadowOffsetX = 0;
+        wheel.canvasContext.shadowOffsetY = 0;
+        wheel.canvasContext.shadowBlur = 30;
+        wheel.canvasContext.strokeStyle = "#000"
+
+        wheel.canvasContext.fillStyle = wheel.colors[key];
+        wheel.canvasContext.fill();
+
+        var gradient = wheel.canvasContext.createRadialGradient(
+            wheel.centerX, wheel.centerY, 70, wheel.centerX, wheel.centerY, wheel.size);
+        gradient.addColorStop("0", "#fff");
+        gradient.addColorStop("1", "#000");
+        wheel.canvasContext.lineWidth = 5;
+        wheel.canvasContext.strokeStyle = gradient;
         wheel.canvasContext.stroke();
 
 
+
+        // draw text
+        wheel.canvasContext.save();
+        wheel.canvasContext.translate(
+            wheel.centerX + Math.cos(lastAngle + arc / 2) * 50,
+            wheel.centerY + Math.sin(lastAngle + arc / 2) * 50);
+        wheel.canvasContext.rotate((lastAngle + angle) / 2);
+
+
+        //text style
+        wheel.canvasContext.fillStyle = '#000000';
+        wheel.canvasContext.fillText(segmentValue, wheel.size / 2 + 20, 0);
+
+        wheel.canvasContext.restore();
+    },
+
+    drawWheel: function () {
+
+        var lastAngle = wheel.angleCurrent;
+
+        wheel.canvasContext.textBaseline = "middle";
+        wheel.canvasContext.textAlign = "center";
+        
+        wheel.canvasContext.font = "25px Arial";
+        for (var segment = 1; segment <= wheel.segments.length; segment++) {
+            var angle = (Math.PI * 2) * (segment / wheel.segments.length) + wheel.angleCurrent;
+            wheel.drawSegment(segment - 1, lastAngle, angle);
+            lastAngle = angle;
+        }
+        
+        
+        // Draw a center circle
+        wheel.canvasContext.beginPath();
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        wheel.canvasContext.closePath();
+        
+        wheel.canvasContext.fillStyle = '#f00';
+        wheel.canvasContext.fill();
+        
+        wheel.canvasContext.beginPath();
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        
+        wheel.canvasContext.beginPath();
+        wheel.canvasContext.lineWidth = 15;
+        wheel.canvasContext.shadowBlur = 90
+        wheel.canvasContext.shadowColor = '#ff0';
+        wheel.canvasContext.strokeStyle = '##F0FF4D';
+        wheel.canvasContext.shadowOffsetX = 0;
+        wheel.canvasContext.shadowOffsetY = 0;
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        wheel.canvasContext.stroke();
+        wheel.canvasContext.stroke();
         wheel.canvasContext.shadowBlur = 0;
 
 
         // Draw outer circle
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.arc(centerX, centerY, size, 0, PI2, false);
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.size, 0, Math.PI * 2, false);
         wheel.canvasContext.closePath();
 
+        // Outer circle style
         wheel.canvasContext.lineWidth = 10;
-        wheel.canvasContext.strokeStyle = '#000000';
+        wheel.canvasContext.strokeStyle = '#222';
         wheel.canvasContext.stroke();
+        
+        
+        
+        //text style
+        wheel.canvasContext.fillStyle = '#000000';
+        wheel.canvasContext.fillText("SPIN", wheel.centerX, wheel.centerY-40);
+        wheel.canvasContext.fillText("TO", wheel.centerX, wheel.centerY);
+        wheel.canvasContext.fillText("WIN", wheel.centerX, wheel.centerY+40);
+        //wheel.neonLightEffect();
+        
+        
     },
 
 
     neonLightEffect: function () {
-        var text = "alert('" + String.fromCharCode(0x2665) + "')";
-        var font = "30px Futura, Helvetica, sans-serif";
+        var text = "a";
+        var font = "10px Futura, Helvetica, sans-serif";
         var jitter = 0; // the distance of the maximum jitter
         var offsetX = 0;
         var offsetY = 0;
@@ -383,6 +359,7 @@ var wheel = {
         // save state
         wheel.canvasContext.save();
         wheel.canvasContext.font = font;
+        
         // calculate width + height of text-block
         var metrics = wheel.canvasContext.measureText(text);
         // create clipping mask around text-effect
