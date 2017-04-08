@@ -35,8 +35,8 @@ button:focus {
     outline: 0;
 }
 .btn-bar {
-    min-width: 820px;
-    height: 840px;
+    min-width: 740px;
+    height: 820px;
 }
 #spin-btn {
     margin: 225px auto;
@@ -79,7 +79,7 @@ button:focus {
     color: #228DFF;
     /*color: #cfff57;*/
     font-family: Iceland;
-    min-width: 820px;
+    min-width: 760px;
     padding: 0;
 }
 .wowactive {
@@ -102,7 +102,7 @@ button:focus {
 .wowdark {
     transition: 0.7s;
     opacity: 0;
-    min-width: 820px;
+    min-width: 760px;
     padding: 0;
 }
 
