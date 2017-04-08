@@ -1,23 +1,34 @@
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0059a8+24,009ec3+100 */
+
 .bg2 {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89b7dd+14,90a9db+36,3888c9+70,4ba2e5+100 */
-    background: #89b7dd; /* Old browsers */
-    background: -moz-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#89b7dd', endColorstr='#4ba2e5', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+    background: #89b7dd;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#89b7dd', endColorstr='#4ba2e5', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
 }
-.bg{    background: #0059a8; /* Old browsers */
-    background: -moz-linear-gradient(45deg, #0059a8 24%, #009ec3 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #0059a8 24%,#009ec3 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #0059a8 24%,#009ec3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0059a8', endColorstr='#009ec3',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+.bg {
+    background: #0059a8;
+    /* Old browsers */
+    background: -moz-linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0059a8', endColorstr='#009ec3', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
 }
- img.money_pouch {
-	width:25px;
-	height:25px;
+img.money_pouch {
+    width: 25px;
+    height: 25px;
 }
-
 canvas {
     padding-left: 0;
     padding-right: 0;
@@ -25,4 +36,20 @@ canvas {
     margin-right: auto;
     display: block;
     width: 800px;
+}
+#spin-btn {
+    position: absolute;
+    left: 920px;
+    top: 29%;
+    height: 290px;
+    width: 290px;
+    border-radius: 50%;
+    border: 1px solid solid;
+    background-color: rgba(0,0,0,0.5)
+}
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
 }
