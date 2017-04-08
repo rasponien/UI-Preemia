@@ -53,7 +53,7 @@ var wheel = {
 
     size: 400,
     innerCircleSize: 150,
-    textPosFromCenter: 80,
+    textPosFromCenter: 105,
 
     canvasContext: $("#canvas")[0].getContext("2d"),
 
@@ -61,7 +61,7 @@ var wheel = {
     colors: ['#000', '#f00', '#060'],
     segments: [100, 10, 25, 250, 30, 1000, 500, 200, 45, 500, 5, 20, 0, 1000000, 0, 350, 5, 99],
     currentSegment: null,
-    
+
     // Cache of segments to colors
     maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
 
@@ -184,8 +184,8 @@ var wheel = {
         var seg_color = new Array();
         for (var i = 0; i < len; i++) {
             seg_color.push(colors[segments[i].toString().hashCode().mod(colorLen)]);
-        wheel.seg_color = seg_color;
-        wheel.draw();
+            wheel.seg_color = seg_color;
+            wheel.draw();
         }
     },
 

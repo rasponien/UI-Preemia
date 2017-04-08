@@ -43,7 +43,7 @@ button:focus {
     height: 290px;
     width: 290px;
     border-radius: 50%;
-    border: 1px solid;
+    border: none;
     background-color: rgba(0, 0, 0, 0);
     font-size: 40px;
 }
@@ -81,12 +81,6 @@ button:focus {
     font-family: Iceland;
     min-width: 820px;
 }
-.wow:hover {
-    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
-    animation: neon2 5.5s ease-in-out infinite alternate;
-    color: #ffffff;
-}
 .wowactive {
     -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
     -moz-animation: neon2 5.5s ease-in-out infinite alternate;
@@ -95,6 +89,12 @@ button:focus {
     -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
     -moz-animation: neon2 2.5s ease-in-out infinite alternate;
     animation: neon2 2.5s ease-in-out infinite alternate;
+    color: #ffffff;
+}
+.wowactive {
+    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+    animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
 .wowmeh {}
