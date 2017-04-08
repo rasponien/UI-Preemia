@@ -62,7 +62,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: ["100", "10", "25", "250", "30", "1000", "500", "200", "45", "500", "5", "20", "0", "1000000", "0", "350", "5", "99"],
+    segments: [100, 10, 25, 250, 30, 1000, 500, 200, 45, 500, 5, 20, 0, 1000000, 0, 350, 5, 99],
     currentSegment: null,
     
     // Cache of segments to colors
@@ -186,7 +186,7 @@ var wheel = {
         // Generate a color cache (so we have consistant coloring)
         var seg_color = new Array();
         for (var i = 0; i < len; i++) {
-            seg_color.push(colors[segments[i].hashCode().mod(colorLen)]);
+            seg_color.push(colors[segments[i].toString().hashCode().mod(colorLen)]);
         wheel.seg_color = seg_color;
         wheel.draw();
         }
