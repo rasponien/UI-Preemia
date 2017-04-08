@@ -1,64 +1,119 @@
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0059a8+24,009ec3+100 */
 
-.bg2 {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#89b7dd+14,90a9db+36,3888c9+70,4ba2e5+100 */
-    background: #89b7dd;
-    /* Old browsers */
-    background: -moz-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #89b7dd 14%, #90a9db 36%, #3888c9 70%, #4ba2e5 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#89b7dd', endColorstr='#4ba2e5', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
+
+body {
+    background-color: #222222;
+    background: repeating-linear-gradient(45deg, #505050 0%, #2b2b2b 10%, #2b2b2b 10%, #2b2b2b 50%) 0 / 15px 15px;
+    color: white;
 }
-.bg {
-    background: #0059a8;
-    /* Old browsers */
-    background: -moz-linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
-    /* FF3.6-15 */
-    background: -webkit-linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
-    /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(45deg, #0059a8 24%, #009ec3 100%);
-    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#0059a8', endColorstr='#009ec3', GradientType=1);
-    /* IE6-9 fallback on horizontal gradient */
-}
+
 img.money_pouch {
     width: 25px;
     height: 25px;
 }
 canvas {
+    /*position: relative;*/
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+
     display: block;
-    width: 800px;
+    width: 50%;
 }
 button:focus {
     outline: 0;
 }
 #spin-btn {
-    position: absolute;
-    left: 893px;
-    top: 290px;
-    height: 230px;
-    width: 230px;
+    position: fixed;
+    left: 40%;
+    top: 300px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
-    border: 1px solid solid;
+    border: 1px solid;
     background-color: rgba(0, 0, 0, 0);
     font-size: 40px;
 }
 .center {
+    text-align: center;
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    /*border: 3px solid green;*/
     padding: 10px;
 }
 .neon {
     color: #fff;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
+}
+
+/* Neon text effects*/
+.wow {
+    transition: 0.5s;
+    opacity: 1;
+    text-decoration: none;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    /*transition: all 1.5s;
+    -webkit-transition-delay:  0.5s;
+    -moz-transition-delay: 0.5s;
+    transition-delay: 0.5s;*/
+    font-size: 200px;
+    color: #228DFF;
+    /*color: #cfff57;*/
+    font-family: Iceland;
+}
+.wow:hover {
+
+  -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+  animation: neon2 5.5s ease-in-out infinite alternate;
+    color: #ffffff;
+}
+.wowactive {
+    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+  animation: neon2 5.5s ease-in-out infinite alternate;
+    color: #ffffff;
+}
+.wowdark {
+    transition: 0.7s;
+    opacity: 0;
+    /*visibility: hidden;*/
+}
+
+/*glow for webkit*/
+
+
+@-webkit-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+}
+
+/*glow for mozilla*/
+
+
+@-moz-keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+}
+
+/*glow*/
+
+
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
 }

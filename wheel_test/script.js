@@ -51,6 +51,8 @@ var wheel = {
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click4.wav"),
         new Audio("sounds/click5.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click5.wav"),
         new Audio("sounds/click5.wav"),
         new Audio("sounds/click6.wav")
     ],
@@ -124,10 +126,10 @@ var wheel = {
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
         if (lastSegment != currentSegment) {
-            wheel.snds[wheel.sndix].play();
+            snd = wheel.snds[wheel.sndix].play();
             wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
         }
-        console.log(currentSegment)
+        //console.log(currentSegment)
         //wheel.sound.play();
         
 
@@ -136,6 +138,16 @@ var wheel = {
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
+            $(".wow").text(currentSegment)
+            $(".wow").removeClass("wowdark")
+            $(".wow").addClass("wowactive");
+            setTimeout(function () {
+                //$(".wow").switchClass("wowactive","wowdark",0.5);
+                $(".wow").addClass("wowdark");
+                setTimeout(function () {
+                    $(".wow").removeClass("wowactive");
+                },1000)
+            },3500)
         }
 
     },
