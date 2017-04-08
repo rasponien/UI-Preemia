@@ -58,7 +58,7 @@ var wheel = {
     angleCurrent: 0,
     angleDelta: 0,
 
-    size: 300,
+    size: 285,
 
     canvasContext: $("#canvas")[0].getContext("2d"),
 
