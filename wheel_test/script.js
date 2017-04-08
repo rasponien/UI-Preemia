@@ -1,23 +1,21 @@
-function addWinningsToBalance(text) {
+function addWinningsToBalance(amount) {
+    
+    var balance = parseInt($("#balance").text());
+    $("#balance").text(balance + amount);
 
-    if (text != "Lose") {
-        var res = parseInt(text.substring(1, text.length));
-        var balance = parseInt($("#balance").text());
-        $("#balance").text(balance + res);
-
-        $('#balance').each(function () {
-            $(this).prop('Counter', balance).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 1000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
+    $('#balance').each(function () {
+        $(this).prop('Counter', balance).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
         });
+    });
 
-    }
+    
 }
 
 
@@ -86,7 +84,8 @@ var wheel = {
     centerY: 300,
 
     spin: function () {
-
+        // deduct spin cost
+        $("#balance").text(parseInt($("#balance").text())-500);
         // Start the wheel only if it's not already spinning
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
@@ -148,6 +147,7 @@ var wheel = {
                 addedclass = "wowactive"
             }
             $(".wow").addClass(addedclass);
+            addWinningsToBalance(currentSegment);
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
