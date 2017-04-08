@@ -24,6 +24,10 @@ img.money_pouch {
     height: 25px;
 }
 canvas {
+    /*position: relative;*/
+    padding-left: 0;
+    padding-right: 0;
+    margin: auto;
     display: block;
     margin: 0 auto;
 }
@@ -58,6 +62,9 @@ button:focus {
 
 /* Neon text effects*/
 
+#reward {
+    position: fixed;
+}
 .wow {
     transition: 0.5s;
     opacity: 1;
@@ -85,7 +92,12 @@ button:focus {
     -moz-animation: neon2 5.5s ease-in-out infinite alternate;
     animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
+    -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+    animation: neon2 2.5s ease-in-out infinite alternate;
+    color: #ffffff;
 }
+.wowmeh {}
 .wowdark {
     transition: 0.7s;
     opacity: 0;

@@ -1,23 +1,21 @@
-function addWinningsToBalance(text) {
+function addWinningsToBalance(amount) {
 
-    if (text != "Lose") {
-        var res = parseInt(text.substring(1, text.length));
-        var balance = parseInt($("#balance").text());
-        $("#balance").text(balance + res);
+    var balance = parseInt($("#balance").text());
+    $("#balance").text(balance + amount);
 
-        $('#balance').each(function () {
-            $(this).prop('Counter', balance).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 1000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
+    $('#balance').each(function () {
+        $(this).prop('Counter', balance).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 1000,
+            easing: 'swing',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
         });
+    });
 
-    }
+
 }
 
 
@@ -61,11 +59,9 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-
-    segments: ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"],
+    segments: ["100", "10", "25", "250", "30", "1000", "500", "200", "45", "500", "5", "20", "0", "1000000", "0", "350", "5", "99"],
     currentSegment: null,
-    //segmentAngle: (Math.PI * 2) / this.segments.length,
-    seg_colors: [],
+    
     // Cache of segments to colors
     maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
 
@@ -81,7 +77,8 @@ var wheel = {
     centerY: 420,
 
     spin: function () {
-
+        // deduct spin cost
+        $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
@@ -116,17 +113,17 @@ var wheel = {
         wheel.angleCurrent = wheel.angleCurrent % (Math.PI * 2);
         //while (wheel.angleCurrent >= Math.PI * 2)
         //    wheel.angleCurrent -= Math.PI * 2;
-    
-        
+
+
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
         if (lastSegment != currentSegment) {
-            snd = wheel.snds[wheel.sndix].play();
-            wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
+
+            snd = wheel.snds[wheel.sndix];
+            snd.volume = 0.3;
+            snd.play();
+            wheel.sndix = (wheel.sndix + 1) % wheel.snds.length;
         }
-        //console.log(currentSegment)
-        //wheel.sound.play();
-        
 
 
         if (finished) {
@@ -135,14 +132,19 @@ var wheel = {
             wheel.angleDelta = 0;
             $(".wow").text(currentSegment)
             $(".wow").removeClass("wowdark")
-            $(".wow").addClass("wowactive");
+            var addedclass = "wowmeh";
+            if (currentSegment > 500) {
+                addedclass = "wowactive"
+            }
+            $(".wow").addClass(addedclass);
+            addWinningsToBalance(currentSegment)
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
                 setTimeout(function () {
-                    $(".wow").removeClass("wowactive");
-                },1000)
-            },3500)
+                    $(".wow").removeClass(addedclass);
+                }, 1000)
+            }, 3500)
         }
 
     },
@@ -178,15 +180,13 @@ var wheel = {
         var len = segments.length;
         var colors = wheel.colors;
         var colorLen = colors.length;
-
         // Generate a color cache (so we have consistant coloring)
         var seg_color = new Array();
-        for (var i = 0; i < len; i++)
+        for (var i = 0; i < len; i++) {
             seg_color.push(colors[segments[i].hashCode().mod(colorLen)]);
-
         wheel.seg_color = seg_color;
-
         wheel.draw();
+        }
     },
 
     draw: function () {
@@ -255,7 +255,7 @@ var wheel = {
         wheel.canvasContext.strokeStyle = "#000"
         wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.stroke();
-        
+
 
         //coloring
         if (wheel.colorIncrementor == wheel.colors.length) {

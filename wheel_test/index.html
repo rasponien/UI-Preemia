@@ -10,20 +10,25 @@
 
 <body class="bg">
     <p id="balance_text"><img src="images/money_pouch.png" class="money_pouch">Balance: <span id="balance"></span></p>
-    <div id="canvas_container" class="row align-items-center">
-        <span class="col-lg-2 col-md-1 col-sm-1"></span>
+    <span class="col-lg-2 col-md-1 col-sm-1"></span>
+    <div class="container">
+        <div id="canvas_container" class="row align-items-center">
 
-        <div id="reward" class="wow wowdark center">100$</div>
-        <div id="wheel">
-            <canvas id="canvas" width="840" height="840"></canvas>
-        </div>
-        <div class="center btn-bar">
-        <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN TO WIN</button>
+
+            <div class="wow wowdark center">100$</div>
+            <div id="wheel">
+                <canvas id="canvas" width="840" height="840"></canvas>
+            </div>
+            <div class="center btn-bar">
+                <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN TO WIN</button>
+            </div>
+
+
         </div>
     </div>
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <script src="script.js"></script>
