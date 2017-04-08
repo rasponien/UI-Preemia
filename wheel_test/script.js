@@ -126,7 +126,10 @@ var wheel = {
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
         if (lastSegment != currentSegment) {
-            snd = wheel.snds[wheel.sndix].play();
+            
+            snd = wheel.snds[wheel.sndix];
+            snd.volume = 0.3;
+            snd.play();
             wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
         }
         //console.log(currentSegment)
