@@ -2,7 +2,7 @@ function addWinningsToBalance(amount) {
 
     var balance = parseInt($("#balance").text());
     $("#balance").text(balance + amount);
-
+    console.log("Add winnings to balance :" + balance);
     $('#balance').each(function () {
         $(this).prop('Counter', balance).animate({
             Counter: $(this).text()
@@ -13,7 +13,10 @@ function addWinningsToBalance(amount) {
                 $(this).text(Math.ceil(now));
             }
         });
-    });
+
+    });  
+
+   
 
 
 }
@@ -367,8 +370,12 @@ window.onload = function () {
     $("#balance").text("6500");
     wheel.disableScrolling();
     wheel.init();
-
+    var start_wheel_sound = new Audio("sounds/jackson5.mp3");
+    start_wheel_sound.volume=0.1;
+	start_wheel_sound.play();
 
     wheel.update();
 
 }
+
+
