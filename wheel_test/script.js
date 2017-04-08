@@ -72,7 +72,7 @@ var wheel = {
 
     seg_colors: [],
     // Cache of segments to colors
-    maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (10 - 1)) + 10),
+    maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
 
     // How long to spin up for (in ms)
     upTime: 500,
