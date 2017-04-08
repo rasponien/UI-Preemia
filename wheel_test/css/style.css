@@ -11,7 +11,7 @@ img.money_pouch {
     width: 25px;
     height: 25px;
 }
-canvas {
+#canvas {
     /*position: relative;*/
     padding-left: 0;
     padding-right: 0;
