@@ -68,7 +68,7 @@ var wheel = {
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
 
-    segments: ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"],
+    segments: [100, 10, 25, 250, 30, 1000, 500, 200, 45, 500, 5, 20, 0, 1000000, 0, 350, 5, 99],
     currentSegment: null,
     //segmentAngle: (Math.PI * 2) / this.segments.length,
     seg_colors: [],
@@ -141,12 +141,16 @@ var wheel = {
             wheel.angleDelta = 0;
             $(".wow").text(currentSegment)
             $(".wow").removeClass("wowdark")
-            $(".wow").addClass("wowactive");
+            var addedclass = "wowmeh";
+            if (currentSegment > 500){
+                addedclass = "wowactive"
+            }
+            $(".wow").addClass(addedclass);
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
                 setTimeout(function () {
-                    $(".wow").removeClass("wowactive");
+                    $(".wow").removeClass(addedclass);
                 },1000)
             },3500)
         }

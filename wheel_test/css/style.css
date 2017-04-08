@@ -48,6 +48,9 @@ button:focus {
 }
 
 /* Neon text effects*/
+#reward {
+    position: fixed;
+}
 .wow {
     transition: 0.5s;
     opacity: 1;
@@ -65,16 +68,19 @@ button:focus {
 }
 .wow:hover {
 
-  -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
-  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
-  animation: neon2 5.5s ease-in-out infinite alternate;
+  -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+  animation: neon2 2.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
 .wowactive {
-    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
-  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
-  animation: neon2 5.5s ease-in-out infinite alternate;
+    -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+  animation: neon2 2.5s ease-in-out infinite alternate;
     color: #ffffff;
+}
+.wowmeh {
+
 }
 .wowdark {
     transition: 0.7s;
