@@ -12,31 +12,33 @@ img.money_pouch {
     height: 25px;
 }
 canvas {
+    /*position: relative;*/
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
+
     display: block;
-    width: 800px;
+    width: 50%;
 }
 button:focus {
     outline: 0;
 }
 #spin-btn {
-    position: absolute;
-    left: 893px;
-    top: 290px;
-    height: 230px;
-    width: 230px;
+    position: fixed;
+    left: 40%;
+    top: 300px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
     border: 1px solid;
     background-color: rgba(0, 0, 0, 0);
     font-size: 40px;
 }
 .center {
+    text-align: center;
     margin: auto;
     width: 50%;
-    border: 3px solid green;
+    /*border: 3px solid green;*/
     padding: 10px;
 }
 .neon {
@@ -47,21 +49,38 @@ button:focus {
 
 /* Neon text effects*/
 .wow {
+    transition: 0.5s;
+    opacity: 1;
     text-decoration: none;
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
-    font-size: 20px;
-    color: #cfff57;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    /*transition: all 1.5s;
+    -webkit-transition-delay:  0.5s;
+    -moz-transition-delay: 0.5s;
+    transition-delay: 0.5s;*/
+    font-size: 200px;
+    color: #228DFF;
+    /*color: #cfff57;*/
     font-family: Iceland;
 }
 .wow:hover {
-  -webkit-animation: neon2 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon2 1.5s ease-in-out infinite alternate;
-  animation: neon2 1.5s ease-in-out infinite alternate;
+
+  -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+  animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
-
+.wowactive {
+    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+  -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+  animation: neon2 5.5s ease-in-out infinite alternate;
+    color: #ffffff;
+}
+.wowdark {
+    transition: 0.7s;
+    opacity: 0;
+    /*visibility: hidden;*/
+}
 
 /*glow for webkit*/
 

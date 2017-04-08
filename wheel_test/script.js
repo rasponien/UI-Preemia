@@ -52,6 +52,9 @@ var wheel = {
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click5.wav"),
         new Audio("sounds/click1.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click5.wav"),
+        new Audio("sounds/click1.wav"),
         new Audio("sounds/click3.wav")
     ],
     sndix: 0,
@@ -136,6 +139,16 @@ var wheel = {
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
+            $(".wow").text(currentSegment)
+            $(".wow").removeClass("wowdark")
+            $(".wow").addClass("wowactive");
+            setTimeout(function () {
+                //$(".wow").switchClass("wowactive","wowdark",0.5);
+                $(".wow").addClass("wowdark");
+                setTimeout(function () {
+                    $(".wow").removeClass("wowactive");
+                },1000)
+            },3500)
         }
 
     },
