@@ -45,13 +45,14 @@ var wheel = {
     timerHandle: 0,
     timerDelay: 25,
     snds: [new Audio("sounds/click1.wav"),
+        new Audio("sounds/click2.wav"),
+        new Audio("sounds/click2.wav"),
         new Audio("sounds/click3.wav"),
-        new Audio("sounds/click5.wav"),
-        new Audio("sounds/click1.wav"),
         new Audio("sounds/click3.wav"),
+        new Audio("sounds/click4.wav"),
         new Audio("sounds/click5.wav"),
-        new Audio("sounds/click1.wav"),
-        new Audio("sounds/click3.wav")
+        new Audio("sounds/click5.wav"),
+        new Audio("sounds/click6.wav")
     ],
     sndix: 0,
     angleCurrent: 0,
