@@ -147,7 +147,7 @@ var wheel = {
                 addedclass = "wowactive"
             }
             $(".wow").addClass(addedclass);
-            addWinningsToBalance(currentSegment);
+            addWinningsToBalance(currentSegment)
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
