@@ -39,7 +39,7 @@ button:focus {
     height: 840px;
 }
 #spin-btn {
-    margin: 267px auto;
+    margin: 225px auto;
     height: 290px;
     width: 290px;
     border-radius: 50%;
@@ -80,6 +80,7 @@ button:focus {
     /*color: #cfff57;*/
     font-family: Iceland;
     min-width: 820px;
+    padding: 0;
 }
 .wowactive {
     -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
@@ -102,6 +103,7 @@ button:focus {
     transition: 0.7s;
     opacity: 0;
     min-width: 820px;
+    padding: 0;
 }
 
 /*glow for webkit*/

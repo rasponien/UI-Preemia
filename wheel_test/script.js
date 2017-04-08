@@ -77,8 +77,8 @@ var wheel = {
 
     frames: 0,
 
-    centerX: 420,
-    centerY: 420,
+    centerX: 380,
+    centerY: 380,
 
     spin: function () {
         // deduct spin cost
