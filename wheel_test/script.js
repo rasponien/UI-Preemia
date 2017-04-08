@@ -43,7 +43,8 @@ var wheel = {
 
     timerHandle: 0,
     timerDelay: 25,
-    snds: [new Audio("sounds/click1.wav"),
+    snds: [
+        new Audio("sounds/click1.wav"),
         new Audio("sounds/click2.wav"),
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click4.wav"),
@@ -54,9 +55,9 @@ var wheel = {
     angleCurrent: 0,
     angleDelta: 0,
 
-    size: 400,
-    innerCircleSize: 150,
-    textPosFromCenter: 105,
+    size: 350,
+    innerCircleSize: 130,
+    textPosFromCenter: 125,
 
     canvasContext: $("#canvas")[0].getContext("2d"),
 
@@ -298,7 +299,7 @@ var wheel = {
         var lastAngle = wheel.angleCurrent;
 
         wheel.canvasContext.textBaseline = "middle";
-        wheel.canvasContext.textAlign = "center";
+        wheel.canvasContext.textAlign = "right";
 
         wheel.canvasContext.font = "25px Arial";
         for (var segment = 1; segment <= wheel.segments.length; segment++) {
