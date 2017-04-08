@@ -37,19 +37,28 @@ canvas {
     display: block;
     width: 800px;
 }
+button:focus {
+    outline: 0;
+}
 #spin-btn {
     position: absolute;
-    left: 920px;
-    top: 29%;
-    height: 290px;
-    width: 290px;
+    left: 893px;
+    top: 290px;
+    height: 230px;
+    width: 230px;
     border-radius: 50%;
     border: 1px solid solid;
-    background-color: rgba(0,0,0,0.5)
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 40px;
 }
 .center {
     margin: auto;
     width: 50%;
     border: 3px solid green;
     padding: 10px;
+}
+.neon {
+    color: #fff;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
 }
