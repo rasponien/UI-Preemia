@@ -44,9 +44,20 @@ var wheel = {
 
     timerHandle: 0,
     timerDelay: 25,
-
+    snds: [new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+    ],
     sound: new Audio("sounds/click3.wav"),
-
+    sndix: 0,
     angleCurrent: 0,
     angleDelta: 0,
 
@@ -59,10 +70,10 @@ var wheel = {
 
     segments: ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"],
     currentSegment: null,
-
+    //segmentAngle: (Math.PI * 2) / this.segments.length,
     seg_colors: [],
     // Cache of segments to colors
-    maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (10 - 1)) + 10),
+    maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
 
     // How long to spin up for (in ms)
     upTime: 500,
@@ -87,7 +98,7 @@ var wheel = {
     },
 
     onTimerTick: function () {
-
+        lastSegment = wheel.getCurrentSegment()
         wheel.frames++;
         wheel.draw();
 
@@ -108,19 +119,20 @@ var wheel = {
 
         // Keep the angle in a reasonable range
         wheel.angleCurrent += wheel.angleDelta;
-        while (wheel.angleCurrent >= Math.PI * 2)
-            wheel.angleCurrent -= Math.PI * 2;
-
-
-        /*
+        wheel.angleCurrent = wheel.angleCurrent % (Math.PI * 2);
+        //while (wheel.angleCurrent >= Math.PI * 2)
+        //    wheel.angleCurrent -= Math.PI * 2;
+    
+        
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
-        if (segment == currentSegment) {
-            wheel.sound.play();
+        if (lastSegment != currentSegment) {
+            wheel.snds[wheel.sndix].play();
+            wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
         }
-        segment = currentSegment;
         console.log(currentSegment)
-        */
+        //wheel.sound.play();
+        
 
 
         if (finished) {
