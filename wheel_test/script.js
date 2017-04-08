@@ -1,5 +1,5 @@
 function addWinningsToBalance(amount) {
-    
+
     var balance = parseInt($("#balance").text());
     $("#balance").text(balance + amount);
     console.log("Add winnings to balance :" + balance);
@@ -13,7 +13,12 @@ function addWinningsToBalance(amount) {
                 $(this).text(Math.ceil(now));
             }
         });
+
     });  
+
+   
+
+
 }
 
 
@@ -36,19 +41,12 @@ Number.prototype.mod = function (n) {
 // WHEEL!
 var wheel = {
 
-
-
     timerHandle: 0,
     timerDelay: 25,
     snds: [new Audio("sounds/click1.wav"),
         new Audio("sounds/click2.wav"),
-        new Audio("sounds/click2.wav"),
-        new Audio("sounds/click3.wav"),
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click4.wav"),
-        new Audio("sounds/click5.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click5.wav"),
         new Audio("sounds/click5.wav"),
         new Audio("sounds/click6.wav")
     ],
@@ -56,17 +54,17 @@ var wheel = {
     angleCurrent: 0,
     angleDelta: 0,
 
-    size: 290,
+    size: 400,
+    innerCircleSize: 150,
+    textPosFromCenter: 80,
 
     canvasContext: $("#canvas")[0].getContext("2d"),
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-
-    segments: [100, 10, 25, 250, 30, 1000, 500, 200, 45, 500, 5, 20, 0, 1000000, 0, 350, 5, 99],
+    segments: ["100", "10", "25", "250", "30", "1000", "500", "200", "45", "500", "5", "20", "0", "1000000", "0", "350", "5", "99"],
     currentSegment: null,
-    //segmentAngle: (Math.PI * 2) / this.segments.length,
-    seg_colors: [],
+    
     // Cache of segments to colors
     maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
 
@@ -78,12 +76,12 @@ var wheel = {
 
     frames: 0,
 
-    centerX: 300,
-    centerY: 300,
+    centerX: 420,
+    centerY: 420,
 
     spin: function () {
         // deduct spin cost
-        $("#balance").text(parseInt($("#balance").text())-500);
+        $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
@@ -118,20 +116,17 @@ var wheel = {
         wheel.angleCurrent = wheel.angleCurrent % (Math.PI * 2);
         //while (wheel.angleCurrent >= Math.PI * 2)
         //    wheel.angleCurrent -= Math.PI * 2;
-    
-        
+
+
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
         if (lastSegment != currentSegment) {
-            
+
             snd = wheel.snds[wheel.sndix];
             snd.volume = 0.3;
             snd.play();
-            wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
+            wheel.sndix = (wheel.sndix + 1) % wheel.snds.length;
         }
-        //console.log(currentSegment)
-        //wheel.sound.play();
-        
 
 
         if (finished) {
@@ -141,18 +136,18 @@ var wheel = {
             $(".wow").text(currentSegment)
             $(".wow").removeClass("wowdark")
             var addedclass = "wowmeh";
-            if (currentSegment > 500){
+            if (currentSegment > 500) {
                 addedclass = "wowactive"
             }
             $(".wow").addClass(addedclass);
-            addWinningsToBalance(currentSegment);
+            addWinningsToBalance(currentSegment)
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
                 setTimeout(function () {
                     $(".wow").removeClass(addedclass);
-                },1000)
-            },3500)
+                }, 1000)
+            }, 3500)
         }
 
     },
@@ -188,15 +183,13 @@ var wheel = {
         var len = segments.length;
         var colors = wheel.colors;
         var colorLen = colors.length;
-
         // Generate a color cache (so we have consistant coloring)
         var seg_color = new Array();
-        for (var i = 0; i < len; i++)
+        for (var i = 0; i < len; i++) {
             seg_color.push(colors[segments[i].hashCode().mod(colorLen)]);
-
         wheel.seg_color = seg_color;
-
         wheel.draw();
+        }
     },
 
     draw: function () {
@@ -238,14 +231,6 @@ var wheel = {
         var arcInDegrees = arc * 180 / Math.PI;
         var index = Math.floor((360 - degrees % 360) / arcInDegrees);
         wheel.setCurrentSegment(wheel.segments[index]);
-
-
-        //needle text - võtame selle kidlasti ära (hetkel jätan sisse, saab vaadata)
-        wheel.canvasContext.textAlign = "left";
-        wheel.canvasContext.textBaseline = "middle";
-        wheel.canvasContext.fillStyle = '#000000';
-        wheel.canvasContext.font = "2em Arial";
-        wheel.canvasContext.fillText(wheel.segments[index], wheel.centerX + 160, wheel.centerY - wheel.size + 10);
     },
 
     drawSegment: function (key, lastAngle, angle) {
@@ -261,7 +246,7 @@ var wheel = {
 
         wheel.canvasContext.moveTo(wheel.centerX, wheel.centerY);
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.size, lastAngle, angle, false);
-        wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY); // Now draw a line back to the centre
+        wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY);
 
         wheel.canvasContext.closePath();
 
@@ -270,16 +255,17 @@ var wheel = {
         wheel.canvasContext.shadowColor = "#000"
         wheel.canvasContext.shadowOffsetX = 0;
         wheel.canvasContext.shadowOffsetY = 0;
-        wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.strokeStyle = "#000"
+        wheel.canvasContext.shadowBlur = 30;
+        wheel.canvasContext.stroke();
 
 
+        //coloring
         if (wheel.colorIncrementor == wheel.colors.length) {
             wheel.colorIncrementor = 0;
         }
         wheel.canvasContext.fillStyle = wheel.colors[wheel.colorIncrementor];
         wheel.colorIncrementor++;
-
         wheel.canvasContext.fill();
 
         var gradient = wheel.canvasContext.createRadialGradient(
@@ -295,8 +281,8 @@ var wheel = {
         // draw text
         wheel.canvasContext.save();
         wheel.canvasContext.translate(
-            wheel.centerX + Math.cos(lastAngle + arc / 2) * 50,
-            wheel.centerY + Math.sin(lastAngle + arc / 2) * 50);
+            wheel.centerX + Math.cos(lastAngle + arc / 2) * wheel.textPosFromCenter,
+            wheel.centerY + Math.sin(lastAngle + arc / 2) * wheel.textPosFromCenter);
         wheel.canvasContext.rotate((lastAngle + angle) / 2);
 
 
@@ -324,14 +310,14 @@ var wheel = {
 
         // Draw a center circle
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
         wheel.canvasContext.closePath();
 
         wheel.canvasContext.fillStyle = '#f00';
         wheel.canvasContext.fill();
 
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
 
         wheel.canvasContext.beginPath();
         wheel.canvasContext.lineWidth = 15;
@@ -340,7 +326,7 @@ var wheel = {
         wheel.canvasContext.strokeStyle = '##F0FF4D';
         wheel.canvasContext.shadowOffsetX = 0;
         wheel.canvasContext.shadowOffsetY = 0;
-        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, 100, 0, Math.PI * 2, false);
+        wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
         wheel.canvasContext.stroke();
         wheel.canvasContext.stroke();
         wheel.canvasContext.shadowBlur = 0;
@@ -356,14 +342,6 @@ var wheel = {
         wheel.canvasContext.strokeStyle = '#222';
         wheel.canvasContext.stroke();
 
-
-        /*
-        //text style
-        wheel.canvasContext.fillStyle = '#000000';
-        wheel.canvasContext.fillText("SPIN", wheel.centerX, wheel.centerY - 40);
-        wheel.canvasContext.fillText("TO", wheel.centerX, wheel.centerY);
-        wheel.canvasContext.fillText("WIN", wheel.centerX, wheel.centerY + 40);
-        */
 
     },
     setCurrentSegment: function (currentSegment) {
@@ -394,7 +372,7 @@ window.onload = function () {
     wheel.init();
     var start_wheel_sound = new Audio("sounds/jackson5.mp3");
     start_wheel_sound.volume=0.1;
-   start_wheel_sound.play();
+	start_wheel_sound.play();
 
     wheel.update();
 

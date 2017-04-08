@@ -1,12 +1,24 @@
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0059a8+24,009ec3+100 */
 
-
 body {
     background-color: #222222;
     background: repeating-linear-gradient(45deg, #505050 0%, #2b2b2b 10%, #2b2b2b 10%, #2b2b2b 50%) 0 / 15px 15px;
     color: white;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
 }
-
+#canvas_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+#wheel {
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
 img.money_pouch {
     width: 25px;
     height: 25px;
@@ -16,19 +28,20 @@ canvas {
     padding-left: 0;
     padding-right: 0;
     margin: auto;
-
     display: block;
-    width: 50%;
+    margin: 0 auto;
 }
 button:focus {
     outline: 0;
 }
+.btn-bar {
+    min-width: 820px;
+    height: 840px;
+}
 #spin-btn {
-    position: fixed;
-    left: 40%;
-    top: 300px;
-    height: 200px;
-    width: 200px;
+    margin: 267px auto;
+    height: 290px;
+    width: 290px;
     border-radius: 50%;
     border: 1px solid;
     background-color: rgba(0, 0, 0, 0);
@@ -48,6 +61,7 @@ button:focus {
 }
 
 /* Neon text effects*/
+
 #reward {
     position: fixed;
 }
@@ -61,65 +75,64 @@ button:focus {
     -webkit-transition-delay:  0.5s;
     -moz-transition-delay: 0.5s;
     transition-delay: 0.5s;*/
-    font-size: 200px;
+    font-size: 80px;
     color: #228DFF;
     /*color: #cfff57;*/
     font-family: Iceland;
+    min-width: 820px;
 }
 .wow:hover {
-
-  -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
-  -moz-animation: neon2 2.5s ease-in-out infinite alternate;
-  animation: neon2 2.5s ease-in-out infinite alternate;
+    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+    animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
 .wowactive {
+    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
+    animation: neon2 5.5s ease-in-out infinite alternate;
+    color: #ffffff;
     -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
-  -moz-animation: neon2 2.5s ease-in-out infinite alternate;
-  animation: neon2 2.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+    animation: neon2 2.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
-.wowmeh {
-
-}
+.wowmeh {}
 .wowdark {
     transition: 0.7s;
     opacity: 0;
-    /*visibility: hidden;*/
+    min-width: 820px;
 }
 
 /*glow for webkit*/
 
-
 @-webkit-keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-  }
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
 }
 
 /*glow for mozilla*/
 
-
 @-moz-keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-  }
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
 }
 
 /*glow*/
 
-
 @keyframes neon2 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-  }
-  to {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-  }
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
 }
