@@ -2,6 +2,24 @@
 // http://codepen.io/barney-parker/pen/OPyYqy
 var options = ["$100", "$10", "$25", "$250", "$30", "$1000", "$1", "$200", "$45", "$500", "$5", "$20", "Lose", "$1000000", "Lose", "$350", "$5", "$99"];
 
+
+var optionStyles = {
+ 
+    strokeStyle : "#fff",
+    lineWidth : 5
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
@@ -10,7 +28,7 @@ var spinArcStart = 10;
 var spinTime = 0;
 var spinTimeTotal = 0;
 
-var ctx;
+var context;
 //
 //document.getElementById("spin").addEventListener("click", spin);
 $("#balance").text("6500");
@@ -43,58 +61,70 @@ function getColor(item, maxitem) {
   return RGB2Color(red,green,blue);
 }
 
+
 function drawRouletteWheel() {
-  var canvas = document.getElementById("canvas");
-  if (canvas.getContext) {
-    var outsideRadius = 200;
-    var textRadius = 160;
+  var canvas = $("#canvas");
+  if (canvas[0].getContext) {
+      
+    var outsideRadius = 220;
+    var textRadius = 180;
     var insideRadius = 125;
 
-    ctx = canvas.getContext("2d");
-    ctx.clearRect(0,0,500,500);
+    context = canvas[0].getContext("2d");
+    context.clearRect(0,0,canvas[0].width,canvas[0].height);
 
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 2;
+    
+    context.arc(250, 250, 90, 0, 360, false);
+    context.fill();
+      
+    context.strokeStyle = optionStyles.strokeStyle;
+    context.lineWidth = 5;
 
-    ctx.font = 'bold 12px Helvetica, Arial';
+    context.font = 'bold 12px Helvetica, Arial';
 
     for(var i = 0; i < options.length; i++) {
       var angle = startAngle + i * arc;
-      //ctx.fillStyle = colors[i];
-      ctx.fillStyle = getColor(i, options.length);
+      //context.fillStyle = colors[i];
+      context.fillStyle = getColor(i, options.length);
 
-      ctx.beginPath();
-      ctx.arc(250, 250, outsideRadius, angle, angle + arc, false);
-      ctx.arc(250, 250, insideRadius, angle + arc, angle, true);
-      ctx.stroke();
-      ctx.fill();
+      context.beginPath();
+      context.arc(250, 250, outsideRadius, angle, angle + arc, false);
+      context.arc(250, 250, insideRadius, angle + arc, angle, true);
+        
+        if (i != options.length - 1 ) {
+            context.stroke();
+            
+        }
+            context.fill();
 
-      ctx.save();
-      ctx.shadowOffsetX = -1;
-      ctx.shadowOffsetY = -1;
-      ctx.shadowBlur    = 0;
-      ctx.shadowColor   = "rgb(220,220,220)";
-      ctx.fillStyle = "black";
-      ctx.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
+      context.save();
+      context.shadowOffsetX = -1;
+      context.shadowOffsetY = -1;
+      context.shadowBlur    = 0;
+      context.shadowColor   = "rgb(220,220,220)";
+      context.fillStyle = "black";
+        console.log(arc)
+        
+      context.translate(250 + Math.cos(angle + arc / 2) * textRadius, 
                     250 + Math.sin(angle + arc / 2) * textRadius);
-      ctx.rotate(angle + arc / 2 + Math.PI / 2);
+      context.rotate(angle + arc / 2 + Math.PI / 2);
       var text = options[i];
-      ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
-      ctx.restore();
+      context.fillText(text, -context.measureText(text).width / 2, 0);
+      context.restore();
     } 
 
     //Arrow
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(250 - 4, 250 - (outsideRadius + 5));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius + 5));
-    ctx.lineTo(250 + 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 + 0, 250 - (outsideRadius - 13));
-    ctx.lineTo(250 - 9, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius - 5));
-    ctx.lineTo(250 - 4, 250 - (outsideRadius + 5));
-    ctx.fill();
+    context.fillStyle = "black";
+    context.beginPath();
+    context.moveTo(250 - 4, 250 - (outsideRadius + 5));
+    context.lineTo(250 + 4, 250 - (outsideRadius + 5));
+    context.lineTo(250 + 4, 250 - (outsideRadius - 5));
+    context.lineTo(250 + 9, 250 - (outsideRadius - 5));
+    context.lineTo(250 + 0, 250 - (outsideRadius - 13));
+    context.lineTo(250 - 9, 250 - (outsideRadius - 5));
+    context.lineTo(250 - 4, 250 - (outsideRadius - 5));
+    context.lineTo(250 - 4, 250 - (outsideRadius + 5));
+    context.fill();
   }
 }
 
@@ -123,11 +153,11 @@ function stopRotateWheel() {
   var degrees = startAngle * 180 / Math.PI + 90;
   var arcd = arc * 180 / Math.PI;
   var index = Math.floor((360 - degrees % 360) / arcd);
-  ctx.save();
-  ctx.font = 'bold 30px Helvetica, Arial';
+  context.save();
+  context.font = 'bold 30px Helvetica, Arial';
   var text = options[index];
-  ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
-  ctx.restore();
+  context.fillText(text, 250 - context.measureText(text).width / 2, 250 + 10);
+  context.restore();
   addWinningsToBalance(text);
 }
 

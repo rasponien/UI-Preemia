@@ -1,15 +1,16 @@
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0059a8+24,009ec3+100 */
 
+
 body {
     background-color: #222222;
     background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
     color: white;
 }
- img.money_pouch {
-	width:25px;
-	height:25px;
-}
 
+img.money_pouch {
+    width: 25px;
+    height: 25px;
+}
 canvas {
     padding-left: 0;
     padding-right: 0;
@@ -18,7 +19,6 @@ canvas {
     display: block;
     width: 800px;
 }
-
 
 /* Neon text effects*/
 .wow {
@@ -200,4 +200,29 @@ canvas {
   to {
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00de, 0 0 35px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de, 0 0 75px #ff00de;
   }
+}
+button:focus {
+    outline: 0;
+}
+#spin-btn {
+    position: absolute;
+    left: 893px;
+    top: 290px;
+    height: 230px;
+    width: 230px;
+    border-radius: 50%;
+    border: 1px solid;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 40px;
+}
+.center {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+.neon {
+    color: #fff;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
 }

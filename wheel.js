@@ -51,6 +51,8 @@ function getColor(item, maxitem) {
 
 function drawRouletteWheel() {
     console.log($("#canvas"))
+    asdfasdfdsa
+    console.log("tere")
   var canvas = document.getElementById("canvas");
   if (canvas.getContext) {
     var outsideRadius = 200;
@@ -168,4 +170,5 @@ function addWinningsToBalance(text){
 }
 
 drawRouletteWheel();
+console.log("tere")
 

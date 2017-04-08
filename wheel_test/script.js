@@ -21,16 +21,7 @@ function addWinningsToBalance(text) {
 }
 
 
-
-
-
-
-// Helpers
-shuffle = function (o) {
-    for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};
-
+//meant for caching colors
 String.prototype.hashCode = function () {
     // See http://www.cse.yorku.ca/~oz/hash.html        
     var hash = 5381;
@@ -41,7 +32,6 @@ String.prototype.hashCode = function () {
     }
     return hash;
 }
-
 Number.prototype.mod = function (n) {
     return ((this % n) + n) % n;
 }
@@ -50,25 +40,20 @@ Number.prototype.mod = function (n) {
 // WHEEL!
 var wheel = {
 
-    
-    
+
+
     timerHandle: 0,
     timerDelay: 25,
-    snds: [new Audio("sounds/click3.wav"),
+    snds: [new Audio("sounds/click1.wav"),
+        new Audio("sounds/click3.wav"),
+        new Audio("sounds/click5.wav"),
+        new Audio("sounds/click1.wav"),
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-        new Audio("sounds/click3.wav"),
-
+        new Audio("sounds/click5.wav"),
+        new Audio("sounds/click1.wav"),
+        new Audio("sounds/click3.wav")
     ],
-    sound: new Audio("sounds/click3.wav"),
     sndix: 0,
     angleCurrent: 0,
     angleDelta: 0,
@@ -271,13 +256,13 @@ var wheel = {
         wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.strokeStyle = "#000"
 
-        
+
         if (wheel.colorIncrementor == wheel.colors.length) {
-            wheel.colorIncrementor = 0;   
+            wheel.colorIncrementor = 0;
         }
         wheel.canvasContext.fillStyle = wheel.colors[wheel.colorIncrementor];
         wheel.colorIncrementor++;
-        
+
         wheel.canvasContext.fill();
 
         var gradient = wheel.canvasContext.createRadialGradient(
@@ -364,88 +349,34 @@ var wheel = {
         */
 
     },
-
-
-    neonLightEffect: function () {
-
-
-        var text = "a";
-        var font = "10px Futura, Helvetica, sans-serif";
-        var jitter = 50; // the distance of the maximum jitter
-        var offsetX = wheel.centerX;
-        var offsetY = wheel.centerY;
-        var blur = 10;
-        // save state
-        wheel.canvasContext.save();
-        wheel.canvasContext.font = font;
-
-        // calculate width + height of text-block
-        var metrics = wheel.canvasContext.measureText(text);
-        // create clipping mask around text-effect
-        wheel.canvasContext.rect(offsetX - blur / 2, offsetY - blur / 2,
-            offsetX + metrics.width + blur, metrics.height + blur);
-        wheel.canvasContext.clip();
-        // create shadow-blur to mask rainbow onto (since shadowColor doesn't accept gradients)
-        wheel.canvasContext.save();
-        wheel.canvasContext.fillStyle = "#fff";
-        wheel.canvasContext.shadowColor = "rgba(0,0,0,1)";
-        wheel.canvasContext.shadowOffsetX = metrics.width + blur;
-        wheel.canvasContext.shadowOffsetY = 0;
-        wheel.canvasContext.shadowBlur = blur;
-        wheel.canvasContext.fillText(text, -metrics.width + offsetX - blur, offsetY + metrics.top);
-        wheel.canvasContext.restore();
-        // create the rainbow linear-gradient
-        var gradient = wheel.canvasContext.createLinearGradient(0, 0, metrics.width, 0);
-        gradient.addColorStop(0, "rgba(255, 0, 0, 1)");
-        gradient.addColorStop(0.15, "rgba(255, 255, 0, 1)");
-        gradient.addColorStop(0.3, "rgba(0, 255, 0, 1)");
-        gradient.addColorStop(0.5, "rgba(0, 255, 255, 1)");
-        gradient.addColorStop(0.65, "rgba(0, 0, 255, 1)");
-        gradient.addColorStop(0.8, "rgba(255, 0, 255, 1)");
-        gradient.addColorStop(1, "rgba(255, 0, 0, 1)");
-        // change composite so source is applied within the shadow-blur
-        wheel.canvasContext.globalCompositeOperation = "source-atop";
-        // apply gradient to shadow-blur
-        wheel.canvasContext.fillStyle = gradient;
-        wheel.canvasContext.fillRect(offsetX - jitter / 2, offsetY,
-            metrics.width + offsetX, metrics.height + offsetY);
-        // change composite to mix as light
-        wheel.canvasContext.globalCompositeOperation = "lighter";
-        // multiply the layer
-        wheel.canvasContext.globalAlpha = 0.7
-        wheel.canvasContext.drawImage(wheel.canvasContext.canvas, 0, 0);
-        wheel.canvasContext.drawImage(wheel.canvasContext.canvas, 0, 0);
-        wheel.canvasContext.globalAlpha = 1
-            // draw white-text ontop of glow
-        wheel.canvasContext.fillStyle = "rgba(255,255,255,0.95)";
-        wheel.canvasContext.fillText(text, offsetX, offsetY + metrics.top);
-        // created jittered stroke
-        wheel.canvasContext.lineWidth = 0.80;
-        wheel.canvasContext.strokeStyle = "rgba(255,255,255,0.25)";
-        var i = 10;
-        while (i--) {
-            var left = jitter / 2 - Math.random() * jitter;
-            var top = jitter / 2 - Math.random() * jitter;
-            wheel.canvasContext.strokeText(text, left + offsetX, top + offsetY + metrics.top);
-        }
-        wheel.canvasContext.strokeStyle = "rgba(0,0,0,0.20)";
-        wheel.canvasContext.strokeText(text, offsetX, offsetY + metrics.top);
-        wheel.canvasContext.restore();
-    },
     setCurrentSegment: function (currentSegment) {
         wheel.currentSegment = currentSegment;
     },
     getCurrentSegment: function () {
         return wheel.currentSegment;
+    },
+    disableScrolling: function () {
+
+        $('body').on({
+            'mousewheel': function (e) {
+                if (e.target.id == 'el') {
+                    return;
+                }
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        })
+
     }
 }
 
 window.onload = function () {
 
     $("#balance").text("6500");
+    wheel.disableScrolling();
     wheel.init();
 
-    
+
     wheel.update();
 
 }
