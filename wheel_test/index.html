@@ -9,19 +9,16 @@
 </head>
 
 <body class="bg">
-    <div class="container">
-        <div class="">
-            <p id="balance_text"><img src="images/money_pouch.png" class="money_pouch">Balance: <span id="balance"></span></p>
-            <div id="canvas_container" class="row align-items-center">
-                <span class="col-lg-2 col-md-1 col-sm-1"></span>
+    <p id="balance_text"><img src="images/money_pouch.png" class="money_pouch">Balance: <span id="balance"></span></p>
+    <div id="canvas_container" class="row align-items-center">
+        <span class="col-lg-2 col-md-1 col-sm-1"></span>
 
-                <div id="reward" class="wow wowdark center">100$</div>
-                <div id="wheel">
-                    <canvas id="canvas" width="700" height="700"></canvas>
-                </div>
-                <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN TO WIN</button>
-            </div>
-
+        <div id="reward" class="wow wowdark center">100$</div>
+        <div id="wheel">
+            <canvas id="canvas" width="840" height="840"></canvas>
+        </div>
+        <div class="center btn-bar">
+        <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN TO WIN</button>
         </div>
     </div>
 
