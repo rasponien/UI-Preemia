@@ -65,6 +65,8 @@ var wheel = {
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click3.wav"),
         new Audio("sounds/click3.wav"),
+        new Audio("sounds/click3.wav"),
+
     ],
     sound: new Audio("sounds/click3.wav"),
     sndix: 0,
@@ -137,10 +139,10 @@ var wheel = {
         var currentSegment = wheel.getCurrentSegment();
         var segment = null;
         if (lastSegment != currentSegment) {
-            wheel.snds[wheel.sndix].play();
+            snd = wheel.snds[wheel.sndix].play();
             wheel.sndix = (wheel.sndix + 1) % wheel.snds.length ;
         }
-        console.log(currentSegment)
+        //console.log(currentSegment)
         //wheel.sound.play();
         
 
