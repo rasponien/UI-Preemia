@@ -49,32 +49,37 @@ button:focus {
     height: 820px;
 }
 #spin-btn {
-    margin: 225px auto;
-    height: 290px;
-    width: 290px;
+    margin: 230px auto;
+    height: 280px;
+    width: 280px;
     border-radius: 50%;
     border: none;
     /*background-color: rgba(0, 0, 0, 0);*/
     background-color: rgba(123, 021, 244, 1);
     font-size: 40px;
+    box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
 }
 .push {
-    animation:pushIn 0.75s forwards;
+    animation:pushIn 6s forwards;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     transition: all 1s ease;
-    -webkit-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
-    -moz-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
-    box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+
 }
 @keyframes pushIn{
     0% {
         transform:scale(1);
     }
-    100% {
+    15% {
+        -webkit-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+        -moz-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+        box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
         transform:scale(0.75);
-
+    }
+    100% {
+        box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
+        transform:scale(1);
     }
 
 }
