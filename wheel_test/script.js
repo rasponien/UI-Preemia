@@ -1,5 +1,7 @@
-function addWinningsToBalance(amount) {
-
+function addWinningsToBalance(amount, duration) {
+    if (duration === undefined){
+        duration = 1000;
+    }
     var balance = parseInt($("#balance").text());
     $("#balance").text(balance + amount);
     //console.log("Add winnings to balance :" + balance);
@@ -7,7 +9,7 @@ function addWinningsToBalance(amount) {
         $(this).prop('Counter', balance).animate({
             Counter: $(this).text()
         }, {
-            duration: 1000,
+            duration: duration,
             easing: 'swing',
             step: function (now) {
                 $(this).text(Math.ceil(now));
@@ -144,26 +146,30 @@ var wheel = {
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
-            $(".wow").text(currentSegment)
-            $(".wow").removeClass("wowdark")
+            $(".wow").text(currentSegment);
+            $(".wow").removeClass("wowdark");
             var LINGER = 3500;
             var addedclass = "wowmeh";
+            var winning_sound;
             if (currentSegment > WOW_THRESHOLD) {
-                  var winning_sound = new Audio("sounds/winning2.wav");
-                winning_sound.play();
+                winning_sound = new Audio("sounds/winning2.wav");
+                winning_sound.volume = 0.35;
                 if (currentSegment > 3 * WOW_THRESHOLD){
-                    addedclass = "wowmega"
-                   
+                    addedclass = "wowmega";
+    
                     LINGER = 5500;
                 } else {
                     LINGER = 4500;
-                    addedclass = "wowactive"
+                    addedclass = "wowactive";
                 }
+            } else {
+                winning_sound = new Audio("sounds/winning.wav");
             }
+            if (currentSegment > 0) winning_sound.play();
             $(".wow").addClass(addedclass);
             setTimeout(function () {
-                addWinningsToBalance(currentSegment)
-            }, 500)
+                addWinningsToBalance(currentSegment, LINGER - 1250)
+            }, 500);
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
