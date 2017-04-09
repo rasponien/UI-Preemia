@@ -68,7 +68,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 1000000, 0, 350, 5, 99],
+    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 100000, 0, 350, 5, 99],
     currentSegment: null,
 
     // Cache of segments to colors

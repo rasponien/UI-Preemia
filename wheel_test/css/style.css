@@ -121,17 +121,17 @@ button:focus {
     padding: 0;
 }
 .wowactive {
-    transition: 0.5s;
+    transition: 0.6s;
     font-size: 200px;
-    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
-    animation: neon2 5.5s ease-in-out infinite alternate;
+    -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+    animation: neon2 2.5s ease-in-out infinite alternate;
     color: #ffffff;
 }
 .wowmega {
-    transition: 0.5s;
-    font-size: 300px;
-    animation: neon2mega 2.5s ease-in-out infinite alternate;
+    transition: 0.4s;
+    font-size: 250px;
+    animation: neon2mega 1.5s ease-in-out infinite alternate;
     color: gold;
 }
 .wowmeh {}
