@@ -149,8 +149,11 @@ var wheel = {
             var LINGER = 3500;
             var addedclass = "wowmeh";
             if (currentSegment > WOW_THRESHOLD) {
+                  var winning_sound = new Audio("sounds/winning2.wav");
+                winning_sound.play();
                 if (currentSegment > 3 * WOW_THRESHOLD){
                     addedclass = "wowmega"
+                   
                     LINGER = 5500;
                 } else {
                     LINGER = 4500;
@@ -161,7 +164,6 @@ var wheel = {
             setTimeout(function () {
                 addWinningsToBalance(currentSegment)
             }, 500)
-            
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");
