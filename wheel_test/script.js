@@ -146,9 +146,16 @@ var wheel = {
             wheel.angleDelta = 0;
             $(".wow").text(currentSegment)
             $(".wow").removeClass("wowdark")
+            var LINGER = 3500;
             var addedclass = "wowmeh";
             if (currentSegment > WOW_THRESHOLD) {
-                addedclass = "wowactive"
+                if (currentSegment > 3 * WOW_THRESHOLD){
+                    addedclass = "wowmega"
+                    LINGER = 5500;
+                } else {
+                    LINGER = 4500;
+                    addedclass = "wowactive"
+                }
             }
             $(".wow").addClass(addedclass);
             setTimeout(function () {
@@ -161,7 +168,7 @@ var wheel = {
                 setTimeout(function () {
                     $(".wow").removeClass(addedclass);
                 }, 1000)
-            }, 3500)
+            }, LINGER)
         }
 
     },

@@ -127,9 +127,13 @@ button:focus {
     -moz-animation: neon2 5.5s ease-in-out infinite alternate;
     animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
-
 }
-
+.wowmega {
+    transition: 0.5s;
+    font-size: 300px;
+    animation: neon2mega 2.5s ease-in-out infinite alternate;
+    color: gold;
+}
 .wowmeh {}
 .wowdark {
     transition: 0.7s;
@@ -168,5 +172,13 @@ button:focus {
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+@keyframes neon2mega {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #228DFF, 0 0 130px #228DFF, 0 0 160px #228DFF, 0 0 200px #228DFF, 0 0 300px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
     }
 }
