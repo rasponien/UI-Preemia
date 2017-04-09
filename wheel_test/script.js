@@ -152,9 +152,14 @@ var wheel = {
             var addedclass = "wowmeh";
             var winning_sound;
             if (currentSegment > WOW_THRESHOLD) {
+                // http://freesound.org/people/lukaso/sounds/69682/
                 winning_sound = new Audio("sounds/winning2.wav");
                 winning_sound.volume = 0.35;
-                if (currentSegment > 3 * WOW_THRESHOLD){
+/*
+                  var winning_sound = new Audio("sounds/winning2.wav");
+                // http://freesound.org/people/lukaso/sounds/69682/
+                winning_sound.play();
+*/                if (currentSegment > 3 * WOW_THRESHOLD){
                     addedclass = "wowmega";
     
                     LINGER = 5500;
@@ -164,8 +169,11 @@ var wheel = {
                 }
             } else {
                 winning_sound = new Audio("sounds/winning.wav");
+                //winning_sound = new Audio("sounds/oneCoin.wav");
+                // http://freesound.org/people/FenrirFangs/sounds/213978/ --oneCoin.wav
             }
             if (currentSegment > 0) winning_sound.play();
+
             $(".wow").addClass(addedclass);
             setTimeout(function () {
                 addWinningsToBalance(currentSegment, LINGER - 1250)
