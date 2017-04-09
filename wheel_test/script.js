@@ -39,6 +39,10 @@ Number.prototype.mod = function (n) {
 
 
 // WHEEL!
+var WOW_THRESHOLD = 500;
+function togglethresh() {
+    WOW_THRESHOLD = -1 * WOW_THRESHOLD;
+}
 var wheel = {
 
     timerHandle: 0,
@@ -63,7 +67,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: [100, 10, 25, 250, 30, 1000, 500, 200, 45, 500, 5, 20, 0, 1000000, 0, 350, 5, 99],
+    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 1000000, 0, 350, 5, 99],
     currentSegment: null,
 
     // Cache of segments to colors
@@ -137,7 +141,7 @@ var wheel = {
             $(".wow").text(currentSegment)
             $(".wow").removeClass("wowdark")
             var addedclass = "wowmeh";
-            if (currentSegment > 500) {
+            if (currentSegment > WOW_THRESHOLD) {
                 addedclass = "wowactive"
             }
             $(".wow").addClass(addedclass);
@@ -371,10 +375,11 @@ window.onload = function () {
     $("#balance").text("6500");
     wheel.disableScrolling();
     wheel.init();
+    /* diable cancer music
     var start_wheel_sound = new Audio("sounds/jackson5.mp3");
     start_wheel_sound.volume=0.1;
 	start_wheel_sound.play();
-
+    */
     wheel.update();
 
 }
