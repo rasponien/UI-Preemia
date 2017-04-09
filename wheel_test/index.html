@@ -9,34 +9,31 @@
 
 </head>
 
-<body class="bg">
-    <span class="col-lg-2 col-md-1 col-sm-1"></span>
-    <div class="container">
-        <div id="canvas_container" class="row align-items-center">
+    <body>
+        
+        <div id="canvas_container">
 
             <div id="balance-container" class="center">
                 Balance<br>$<span id="balance"></span>
             </div>
-
-            <div id="wheel">
+            <div id="wheel-container" class="center">
                 <canvas id="canvas" width="760" height="760"></canvas>
             </div>
-            <div id="button-container" class="center btn-bar">
-                <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN<br>TO<br>WIN</button>
+            <div id="button-container" class="center">
+                <button type="button" class="btn-spin" onclick="wheel.spin()">SPIN<br>TO<br>WIN</button>
             </div>
             <div id="score-container" class="center">
-                <div id="score" class="wow wowdark center"></div>
+                <div class="wow wowdark"></div>
             </div>
 
-
         </div>
-    </div>
 
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-</body>
-
+        <!-- jQuery first, then Tether, then Bootstrap JS. -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="script.js"></script>
+        
+    </body>
+    
 </html>

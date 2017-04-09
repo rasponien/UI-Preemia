@@ -1,94 +1,159 @@
 /* http://codepen.io/FelixRilling/pen/qzfoc */
 
 body {
-    background-color: #222222;
-    background: repeating-linear-gradient(45deg, #505050 0%, #2b2b2b 10%, #2b2b2b 10%, #2b2b2b 50%) 0 / 15px 15px;
-    color: white;
+    background: repeating-linear-gradient(45deg, #505050 0%, #2b2b2b 10%, #2b2b2b 10%, #2b2b2b 50%) 0 / 16px 14px;
     position: fixed;
     height: 100%;
     width: 100%;
     margin: 0;
 }
 
+/*-----------------------------------------------------------------------------------
+                                    Main container 
+-----------------------------------------------------------------------------------*/
+#canvas_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 760px
+}
+
+
+/*-----------------------------------------------------------------------------------
+                                    4 subcontainers 
+-----------------------------------------------------------------------------------*/
 #balance-container {
     font-family: Iceland, cursive;
     font-size: 80px;
     line-height: 70px;
     padding-bottom: 0;
-    min-width: 760px;
+    color: #ccc;
 }
 
-#canvas_container {
-    position: relative;
+#wheel-container {
+    position: absolute;
     width: 100%;
-    height: 100%;
+    padding: 0;
+}
+
+#button-container {
+    position: absolute;
+    width: 100%;
 }
 
 #score-container {
     position: absolute;
     width: 100%;
-    min-width: 760px;
-    height: 760px;
+    height: 760px;  
     padding: 0;
     margin: 25px auto;
     display: none;
     line-height: 700px;
 }
 
-#button-container {
-    width: 100%;
-}
-#score {
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 710px;
-    height: 710px;
-}
-#wheel {
-    position: absolute;
-    width: 100%;
-    z-index: -1;
-}
-img.money_pouch {
-    width: 40px;
-    height: 40px;
-}
-canvas {
-    /*position: relative;*/
-    padding-left: 0;
-    padding-right: 0;
-    margin: auto;
-    display: block;
-    margin: 0 auto;
-}
-button:focus {
-    outline: 0;
-}
-.btn-bar {
-    position: absolute;
-    min-width: 760px;
-    height: 820px;
-}
-#spin-btn {
+
+
+/*-----------------------------------------------------------------------------------
+                                    Roulette button
+-----------------------------------------------------------------------------------*/
+.btn-spin {
     margin: 235px auto;
     height: 270px;
     width: 270px;
     border-radius: 50%;
     border: none;
     background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 
+        inset 5px 5px 60px #000, 
+        inset 5px -5px 60px #0b0, 
+        inset -5px 5px 60px #000, 
+        inset -5px -5px 60px #ff0, 
+        inset 0px 5px 60px #FF1177, 
+        inset 0px -5px 60px #FF1177, 
+        inset 5px 0px 60px #FF1177, 
+        inset -5px 0px 60px #FF1177;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     font-size: 40px;
     line-height: 45px;
-    box-shadow: inset 5px 5px 60px #000, inset 5px -5px 60px #0b0, inset -5px 5px 60px #000, inset -5px -5px 60px #ff0, inset 0px 5px 60px #FF1177, inset 0px -5px 60px #FF1177, inset 5px 0px 60px #FF1177, inset -5px 0px 60px #FF1177;
     color: #fff;
-    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
+    text-shadow: 
+        0 0 5px #fff, 
+        0 0 15px #fff, 
+        0 0 30px #fff, 
+        0 0 40px #FF1177, 
+        0 0 70px #FF1177, 
+        0 0 80px #FF1177, 
+        0 0 100px #FF1177, 
+        0 0 150px #FFf177;
 }
-#spin-btn:active {
-    box-shadow: inset 5px 5px 60px #000, inset 5px -5px 60px #0b0, inset -5px 5px 60px #000, inset -5px -5px 60px #ff0, inset 0px 5px 60px #FF1177, inset 0px -5px 60px #FF1177, inset 5px 0px 60px #FF1177, inset -5px 0px 60px #FF1177;
-    !important;
-    color: #777 !important;
-    text-shadow: 0 0 39px #fff !important;
+.btn-spin:focus {
+    outline: 0;
 }
+.btn-spin:active {
+    box-shadow: 
+        inset 5px 5px 60px #000, 
+        inset 5px -5px 60px #0b0, 
+        inset -5px 5px 60px #000, 
+        inset -5px -5px 60px #ff0, 
+        inset 0px 5px 60px #FF1177, 
+        inset 0px -5px 60px #FF1177, 
+        inset 5px 0px 60px #FF1177, 
+        inset -5px 0px 60px #FF1177;
+    color: #777;
+    text-shadow: 0 0 39px #fff;
+}
+
+
+
+
+/*-----------------------------------------------------------------------------------
+                                    Score displaying
+-----------------------------------------------------------------------------------*/
+.wow {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 710px;
+    height: 710px;
+    margin: auto;
+    padding: 0;
+    opacity: 1;
+    font-family: Iceland;
+    font-size: 80px;
+    text-decoration: none;
+    color: #228DFF;
+    transition: 0.7s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+}
+
+/**
+Ei hakanud surkima seda klassi, aga script'is saaks ilmselt nii, et muuta vaid css'is opacity't.
+banner.css("opacity", 1); kui finished
+ja
+banner.css("opacity", 0); kui viimane timeout
+*/
+.wowdark {
+    opacity: 0;
+}
+
+
+
+/**
+Ei tea mida sellega edasi teha, kustutab ära?
+*/
+img.money_pouch {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+/*-----------------------------------------------------------------------------------*/
+/**
+Asendasin selle osa hetkel oma nupuga, mis arvad? - 
+javascriptis veel lisatakse seda külge
+*/
 .push {
     /*
     animation:pushIn 6s forwards;
@@ -115,93 +180,150 @@ button:focus {
     }
     */
 }
+/*-----------------------------------------------------------------------------------*/
+
+
+.wowactive {
+    transition: 0.6s;
+    font-size: 200px;
+    -webkit-animation: neon2 0.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 0.5s ease-in-out infinite alternate;
+    animation: neon2 0.5s ease-in-out infinite alternate;
+    color: #fff;
+}
+.wowmega {
+    transition: 0.4s;
+    font-size: 230px;
+    animation: neon2mega 0.5s ease-in-out infinite alternate;
+    color: #ffd700;
+}
+.wowmeh {}
+
+
+
+
+/*-----------------------------------------------------------------------------------
+                                Neon text effects
+-----------------------------------------------------------------------------------*/
+
+/*glow for webkit*/
+@-webkit-keyframes neon2 {
+    from {
+        text-shadow: 
+            0 0 10px #fff, 
+            0 0 20px #fff, 
+            0 0 30px #fff, 
+            0 0 40px #228DFF, 
+            0 0 70px #228DFF, 
+            0 0 80px #228DFF, 
+            0 0 100px #228DFF, 
+            0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 
+            0 0 5px #fff, 
+            0 0 10px #fff, 
+            0 0 15px #fff, 
+            0 0 20px #228DFF, 
+            0 0 35px #228DFF, 
+            0 0 40px #228DFF, 
+            0 0 50px #228DFF, 
+            0 0 75px #228DFF;
+    }
+}
+
+/*glow for mozilla*/
+@-moz-keyframes neon2 {
+    from {
+        text-shadow: 
+            0 0 10px #fff, 
+            0 0 20px #fff, 
+            0 0 30px #fff, 
+            0 0 40px #228DFF, 
+            0 0 70px #228DFF, 
+            0 0 80px #228DFF, 
+            0 0 100px #228DFF, 
+            0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 
+            0 0 5px #fff, 
+            0 0 10px #fff, 
+            0 0 15px #fff, 
+            0 0 20px #228DFF, 
+            0 0 35px #228DFF, 
+            0 0 40px #228DFF, 
+            0 0 50px #228DFF, 
+            0 0 75px #228DFF;
+    }
+}
+
+/*glow*/
+@keyframes neon2 {
+    from {
+        text-shadow: 
+            0 0 10px #fff, 
+            0 0 20px #fff, 
+            0 0 30px #fff, 
+            0 0 40px #228DFF, 
+            0 0 70px #228DFF, 
+            0 0 80px #228DFF, 
+            0 0 100px #228DFF, 
+            0 0 150px #228DFF;
+    }
+    to {
+        text-shadow: 
+            0 0 5px #fff, 
+            0 0 10px #fff, 
+            0 0 15px #fff, 
+            0 0 20px #228DFF, 
+            0 0 35px #228DFF, 
+            0 0 40px #228DFF, 
+            0 0 50px #228DFF, 
+            0 0 75px #228DFF;
+    }
+}
+@keyframes neon2mega {
+    from {
+        text-shadow: 
+            0 0 10px #fff, 
+            0 0 40px #fff, 
+            0 0 60px #fff, 
+            0 0 80px #228DFF, 
+            0 0 130px #228DFF, 
+            0 0 160px #228DFF, 
+            0 0 200px #228DFF, 
+            0 0 300px #228DFF;
+    }
+    to {
+        text-shadow: 
+            0 0 5px #fff, 
+            0 0 20px #fff, 
+            0 0 30px #fff, 
+            0 0 40px #228DFF, 
+            0 0 70px #228DFF, 
+            0 0 80px #228DFF, 
+            0 0 100px #228DFF, 
+            0 0 150px #228DFF;
+    }
+}
+
+
+
+/*-----------------------------------------------------------------------------------
+                                        Utilities
+-----------------------------------------------------------------------------------*/
+
 .center {
     text-align: center;
     margin: auto;
     width: 50%;
     padding: 10px 0;
 }
-.neon {}
 
-/* Neon text effects*/
 
-#reward {
-    position: fixed;
-}
-.wow {
-    transition: 0.5s;
-    opacity: 1;
-    text-decoration: none;
-    -webkit-transition: all 1.5s;
-    -moz-transition: all 1.5s;
-    /*transition: all 1.5s;
-    -webkit-transition-delay:  0.5s;
-    -moz-transition-delay: 0.5s;
-    transition-delay: 0.5s;*/
-    font-size: 80px;
-    color: #228DFF;
-    /*color: #cfff57;*/
-    font-family: Iceland;
-    padding: 0;
-}
-.wowactive {
-    transition: 0.6s;
-    font-size: 200px;
-    -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 2.5s ease-in-out infinite alternate;
-    animation: neon2 2.5s ease-in-out infinite alternate;
-    color: #ffffff;
-}
-.wowmega {
-    transition: 0.4s;
-    font-size: 250px;
-    animation: neon2mega 1.5s ease-in-out infinite alternate;
-    color: gold;
-}
-.wowmeh {}
-.wowdark {
-    transition: 0.7s;
-    opacity: 0;
-    padding: 0;
-}
 
-/*glow for webkit*/
 
-@-webkit-keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-    }
-}
 
-/*glow for mozilla*/
 
-@-moz-keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-    }
-}
 
-/*glow*/
-
-@keyframes neon2 {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
-    }
-}
-@keyframes neon2mega {
-    from {
-        text-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #228DFF, 0 0 130px #228DFF, 0 0 160px #228DFF, 0 0 200px #228DFF, 0 0 300px #228DFF;
-    }
-    to {
-        text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    }
-}

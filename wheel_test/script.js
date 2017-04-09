@@ -72,7 +72,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 100000, 0, 350, 5, 99],
+    segments: [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 5, 20, 0, 100000, 0, 350, 5, 99],
     currentSegment: null,
 
     // Cache of segments to colors
@@ -224,7 +224,7 @@ var wheel = {
 
     },
     initCanvas: function () {
-        var canvas = $('#wheel #canvas')[0];
+        var canvas = $('#wheel-container #canvas')[0];
         //canvas = document.createElement('canvas');
         //$(canvas).attr('width', 1000).attr('height', 600).attr('id', 'canvas').appendTo('.wheel');
         //console.log(canvas)
