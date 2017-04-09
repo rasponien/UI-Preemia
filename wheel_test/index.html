@@ -10,21 +10,19 @@
 </head>
 
 <body class="bg">
-    <div id="balance_text">
-        <!-- <img src="images/money_pouch.png" class="money_pouch"> -->
-        Balance: <br>$
-        <span id="balance"></span>
-    </div>
     <span class="col-lg-2 col-md-1 col-sm-1"></span>
     <div class="container">
         <div id="canvas_container" class="row align-items-center">
 
+            <div id="balance-container" class="center">
+                Balance<br>$<span id="balance"></span>
+            </div>
 
             <div id="wheel">
                 <canvas id="canvas" width="760" height="760"></canvas>
             </div>
-            <div class="center btn-bar">
-                <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN TO WIN</button>
+            <div id="button-container" class="center btn-bar">
+                <button type="button" class="btn btn-primary center neon" value="spin" id='spin-btn' onclick="wheel.spin()">SPIN<br>TO<br>WIN</button>
             </div>
             <div id="score-container" class="center">
                 <div id="score" class="wow wowdark center"></div>
