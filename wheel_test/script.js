@@ -150,6 +150,7 @@ var wheel = {
             var addedclass = "wowmeh";
             if (currentSegment > WOW_THRESHOLD) {
                   var winning_sound = new Audio("sounds/winning2.wav");
+                // http://freesound.org/people/lukaso/sounds/69682/
                 winning_sound.play();
                 if (currentSegment > 3 * WOW_THRESHOLD){
                     addedclass = "wowmega"
@@ -159,6 +160,11 @@ var wheel = {
                     LINGER = 4500;
                     addedclass = "wowactive"
                 }
+            }
+            else{
+                var losing_sound = new Audio("sounds/oneCoin.wav");
+                losing_sound.play();
+               // http://freesound.org/people/FenrirFangs/sounds/213978/
             }
             $(".wow").addClass(addedclass);
             setTimeout(function () {
