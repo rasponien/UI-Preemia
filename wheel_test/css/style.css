@@ -1,4 +1,5 @@
 /* http://codepen.io/FelixRilling/pen/qzfoc */
+
 body {
     background-color: #222222;
     background: repeating-linear-gradient(45deg, #505050 0%, #2b2b2b 10%, #2b2b2b 10%, #2b2b2b 50%) 0 / 15px 15px;
@@ -10,15 +11,30 @@ body {
 }
 #balance {
     font-family: Iceland, cursive;
-
 }
 #balance_text {
     font-family: Iceland, cursive;
     font-size: 40px;
-    position:relative;
+    position: relative;
     padding: 15px;
     height: 50px;
     float: left;
+}
+#score-container {
+    position: absolute;
+    width: 100%;
+    min-width: 760px;
+    height: 760px;
+    padding: 0;
+    margin: 25px auto;
+    display: none;
+    line-height: 700px;
+}
+#score {
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 710px;
+    height: 710px;
 }
 #canvas_container {
     position: relative;
@@ -46,7 +62,8 @@ button:focus {
     outline: 0;
 }
 .btn-bar {
-    min-width: 740px;
+    position: absolute;
+    min-width: 760px;
     height: 820px;
 }
 #spin-btn {
@@ -61,9 +78,8 @@ button:focus {
 .center {
     text-align: center;
     margin: auto;
-    width: 50%;
-    /*border: 3px solid green;*/
-    padding: 10px;
+    width: 100%;
+    padding: 10px 0;
 }
 .neon {
     color: #fff;
@@ -90,7 +106,6 @@ button:focus {
     color: #228DFF;
     /*color: #cfff57;*/
     font-family: Iceland;
-    min-width: 760px;
     padding: 0;
 }
 .wowactive {
@@ -100,14 +115,11 @@ button:focus {
     -moz-animation: neon2 5.5s ease-in-out infinite alternate;
     animation: neon2 5.5s ease-in-out infinite alternate;
     color: #ffffff;
-
 }
-
 .wowmeh {}
 .wowdark {
     transition: 0.7s;
     opacity: 0;
-    min-width: 760px;
     padding: 0;
 }
 

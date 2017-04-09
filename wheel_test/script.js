@@ -91,7 +91,9 @@ var wheel = {
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
             wheel.frames = 0;
-
+            $("#score-container").css("display", "block");
+            
+            
             wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
         }
     },
@@ -151,6 +153,7 @@ var wheel = {
                 $(".wow").addClass("wowdark");
                 setTimeout(function () {
                     $(".wow").removeClass(addedclass);
+                    $("#score-container").css("display", "none");
                 }, 1000)
             }, 3500)
         }
