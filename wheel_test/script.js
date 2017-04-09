@@ -90,12 +90,15 @@ var wheel = {
         $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
         $("#spin-btn").addClass("push");
-        if (wheel.timerHandle == 0) {
+        setTimeout(function () {
+            if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
             wheel.frames = 0;
 
             wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
-        }
+            }
+        }, 175)
+   
     },
 
     onTimerTick: function () {

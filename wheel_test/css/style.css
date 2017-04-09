@@ -59,7 +59,7 @@ button:focus {
     font-size: 40px;
 }
 .push {
-    animation:pushIn 2s forwards;
+    animation:pushIn 0.75s forwards;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -71,9 +71,6 @@ button:focus {
 @keyframes pushIn{
     0% {
         transform:scale(1);
-    }
-    40% {
-        transform:scale(0.75);
     }
     100% {
         transform:scale(0.75);
