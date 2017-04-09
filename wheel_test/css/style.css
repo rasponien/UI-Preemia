@@ -93,7 +93,7 @@ button:focus {
 .neon {
     color: #fff;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    text-shadow: 0 0 5px #222, 0 0 15px #eee, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
+    text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
 }
 
 /* Neon text effects*/
