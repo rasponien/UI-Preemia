@@ -17,8 +17,13 @@ body {
     font-size: 40px;
     position: relative;
     padding: 15px;
+    font-size: 80px;
+    top:40px;
+    left: 15px;
     height: 50px;
     float: left;
+    margin-left:20px;
+    margin-top: 10px;
 }
 #score-container {
     position: absolute;
@@ -67,13 +72,39 @@ button:focus {
     height: 820px;
 }
 #spin-btn {
-    margin: 225px auto;
-    height: 290px;
-    width: 290px;
+    margin: 235px auto;
+    height: 270px;
+    width: 270px;
     border-radius: 50%;
     border: none;
-    background-color: rgba(0, 0, 0, 0);
+    /*background-color: rgba(0, 0, 0, 0);*/
+    background-color: rgba(123, 021, 244, 1);
     font-size: 40px;
+    box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
+}
+.push {
+    animation:pushIn 6s forwards;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+
+}
+@keyframes pushIn{
+    0% {
+        transform:scale(1);
+    }
+    15% {
+        -webkit-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+        -moz-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+        box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+        transform:scale(0.75);
+    }
+    100% {
+        box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
+        transform:scale(1);
+    }
+
 }
 .center {
     text-align: center;
@@ -84,7 +115,7 @@ button:focus {
 .neon {
     color: #fff;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
+    text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FFf177;
 }
 
 /* Neon text effects*/
@@ -109,12 +140,18 @@ button:focus {
     padding: 0;
 }
 .wowactive {
-    transition: 0.5s;
+    transition: 0.6s;
     font-size: 200px;
-    -webkit-animation: neon2 5.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 5.5s ease-in-out infinite alternate;
-    animation: neon2 5.5s ease-in-out infinite alternate;
+    -webkit-animation: neon2 2.5s ease-in-out infinite alternate;
+    -moz-animation: neon2 2.5s ease-in-out infinite alternate;
+    animation: neon2 2.5s ease-in-out infinite alternate;
     color: #ffffff;
+}
+.wowmega {
+    transition: 0.4s;
+    font-size: 250px;
+    animation: neon2mega 1.5s ease-in-out infinite alternate;
+    color: gold;
 }
 .wowmeh {}
 .wowdark {
@@ -153,5 +190,13 @@ button:focus {
     }
     to {
         text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+    }
+}
+@keyframes neon2mega {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #228DFF, 0 0 130px #228DFF, 0 0 160px #228DFF, 0 0 200px #228DFF, 0 0 300px #228DFF;
+    }
+    to {
+        text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
     }
 }

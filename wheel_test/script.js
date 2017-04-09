@@ -1,16 +1,19 @@
-function addWinningsToBalance(amount) {
-
+function addWinningsToBalance(amount, duration) {
+    if (duration === undefined){
+        duration = 1000;
+    }
     var balance = parseInt($("#balance").text());
     $("#balance").text(balance + amount);
-    console.log("Add winnings to balance :" + balance);
+    //console.log("Add winnings to balance :" + balance);
     $('#balance').each(function () {
         $(this).prop('Counter', balance).animate({
             Counter: $(this).text()
         }, {
-            duration: 1000,
+            duration: duration,
             easing: 'swing',
             step: function (now) {
                 $(this).text(Math.ceil(now));
+                //$(this).css("font-size",40 + (now % (amount < 10 ? 1 : 5)));
             }
         });
 
@@ -43,6 +46,8 @@ var WOW_THRESHOLD = 500;
 function togglethresh() {
     WOW_THRESHOLD = -1 * WOW_THRESHOLD;
 }
+var winsnd1 = new Audio("sounds/winning1.wav");
+var winsnd2 = new Audio("sounds/winning2.wav");
 var wheel = {
 
     timerHandle: 0,
@@ -67,7 +72,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 1000000, 0, 350, 5, 99],
+    segments: [1500, 10, 510, 250, 30, 1000, 501, 200, 45, 750, 5, 20, 0, 100000, 0, 350, 5, 99],
     currentSegment: null,
 
     // Cache of segments to colors
@@ -88,14 +93,18 @@ var wheel = {
         // deduct spin cost
         $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
-        if (wheel.timerHandle == 0) {
+        $("#spin-btn").addClass("push");
+        setTimeout(function () {
+            if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
             wheel.frames = 0;
             $("#score-container").css("display", "block");
             
             
             wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
-        }
+            }
+        }, 175)
+   
     },
 
     onTimerTick: function () {
@@ -137,25 +146,69 @@ var wheel = {
 
 
         if (finished) {
+            $("#spin-btn").removeClass("push");
+            banner = $(".wow");
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
-            $(".wow").text(currentSegment)
-            $(".wow").removeClass("wowdark")
+            
+            banner.text(currentSegment);
+            banner.removeClass("wowdark");
+            var LINGER = 3500;
             var addedclass = "wowmeh";
+            var winning_sound;
+            var addFadeout = false;
+            var soundDuration;
             if (currentSegment > WOW_THRESHOLD) {
-                addedclass = "wowactive"
+                // http://freesound.org/people/lukaso/sounds/69682/
+                winning_sound = winsnd2;
+                winning_sound.volume = 0.35;
+                soundDuration = winning_sound.duration;
+                
+                addFadeout = true;
+                
+                if (currentSegment > 3 * WOW_THRESHOLD){
+                    addedclass = "wowmega";
+    
+                    LINGER = 5500;
+                } else {
+                    LINGER = 4500;
+                    addedclass = "wowactive";
+                }
+            } else {
+                winning_sound = winsnd1;
+                //winning_sound = new Audio("sounds/oneCoin.wav");
+                // http://freesound.org/people/FenrirFangs/sounds/213978/ --oneCoin.wav
             }
-            $(".wow").addClass(addedclass);
-            addWinningsToBalance(currentSegment)
+            
+            if (currentSegment > 0) winning_sound.play();
+            // Audio fadeout
+            if (addFadeout){
+                var fadeDelay = soundDuration * 1000 * 0.6;
+                var fadeDuration = soundDuration * 1000 * 0.4;
+                var fadeInterval = fadeDuration / 20;
+                setTimeout(function () {
+                    interval = setInterval(function () {
+                        if (fadeDuration <= 0) clearInterval(interval);
+                        fadeDuration -= fadeInterval;
+                        winning_sound.volume = Math.max(0, winning_sound.volume - 0.35 * 0.05);
+                    }, fadeInterval)
+                }, fadeDelay)
+            }
+
+            banner.addClass(addedclass);
             setTimeout(function () {
-                //$(".wow").switchClass("wowactive","wowdark",0.5);
-                $(".wow").addClass("wowdark");
+                addWinningsToBalance(currentSegment, LINGER - 1250)
+            }, 500);
+            setTimeout(function () {
+                //banner.switchClass("wowactive","wowdark",0.5);
+                banner.addClass("wowdark");
                 setTimeout(function () {
                     $(".wow").removeClass(addedclass);
                     $("#score-container").css("display", "none");
+                    banner.removeClass(addedclass);
                 }, 1000)
-            }, 3500)
+            }, LINGER)
         }
 
     },
