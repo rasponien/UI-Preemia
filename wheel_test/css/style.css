@@ -49,9 +49,9 @@ button:focus {
     height: 820px;
 }
 #spin-btn {
-    margin: 230px auto;
-    height: 280px;
-    width: 280px;
+    margin: 235px auto;
+    height: 270px;
+    width: 270px;
     border-radius: 50%;
     border: none;
     /*background-color: rgba(0, 0, 0, 0);*/
