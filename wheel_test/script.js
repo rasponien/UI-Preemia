@@ -2,7 +2,7 @@ function addWinningsToBalance(amount) {
 
     var balance = parseInt($("#balance").text());
     $("#balance").text(balance + amount);
-    console.log("Add winnings to balance :" + balance);
+    //console.log("Add winnings to balance :" + balance);
     $('#balance').each(function () {
         $(this).prop('Counter', balance).animate({
             Counter: $(this).text()
@@ -11,6 +11,7 @@ function addWinningsToBalance(amount) {
             easing: 'swing',
             step: function (now) {
                 $(this).text(Math.ceil(now));
+                //$(this).css("font-size",40 + (now % (amount < 10 ? 1 : 5)));
             }
         });
 
@@ -88,6 +89,7 @@ var wheel = {
         // deduct spin cost
         $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
+        $("#spin-btn").addClass("push");
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
             wheel.frames = 0;
@@ -135,6 +137,7 @@ var wheel = {
 
 
         if (finished) {
+            $("#spin-btn").removeClass("push");
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
@@ -145,7 +148,10 @@ var wheel = {
                 addedclass = "wowactive"
             }
             $(".wow").addClass(addedclass);
-            addWinningsToBalance(currentSegment)
+            setTimeout(function () {
+                addWinningsToBalance(currentSegment)
+            }, 500)
+            
             setTimeout(function () {
                 //$(".wow").switchClass("wowactive","wowdark",0.5);
                 $(".wow").addClass("wowdark");

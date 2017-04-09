@@ -10,13 +10,12 @@ body {
 }
 #balance {
     font-family: Iceland, cursive;
-
 }
 #balance_text {
     font-family: Iceland, cursive;
     font-size: 40px;
-    position:relative;
-    padding: 15px;
+    top:40px;
+    left: 15px;
     height: 50px;
     float: left;
 }
@@ -55,8 +54,32 @@ button:focus {
     width: 290px;
     border-radius: 50%;
     border: none;
-    background-color: rgba(0, 0, 0, 0);
+    /*background-color: rgba(0, 0, 0, 0);*/
+    background-color: rgba(123, 021, 244, 1);
     font-size: 40px;
+}
+.push {
+    animation:pushIn 2s forwards;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    -webkit-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+    -moz-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+    box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
+}
+@keyframes pushIn{
+    0% {
+        transform:scale(1);
+    }
+    40% {
+        transform:scale(0.75);
+    }
+    100% {
+        transform:scale(0.75);
+
+    }
+
 }
 .center {
     text-align: center;
