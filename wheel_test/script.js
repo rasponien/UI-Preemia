@@ -1,5 +1,5 @@
 function addWinningsToBalance(amount, duration) {
-    if (duration === undefined){
+    if (duration === undefined) {
         duration = 1000;
     }
     var balance = parseInt($("#balance").text());
@@ -17,9 +17,9 @@ function addWinningsToBalance(amount, duration) {
             }
         });
 
-    });  
+    });
 
-   
+
 
 
 }
@@ -41,7 +41,7 @@ Number.prototype.mod = function (n) {
 }
 Number.prototype.toDegrees = function () {
     return (this * 180) / Math.PI
-    
+
 }
 
 
@@ -51,6 +51,7 @@ Number.prototype.toDegrees = function () {
 
 // WHEEL!
 var WOW_THRESHOLD = 500;
+
 function togglethresh() {
     WOW_THRESHOLD = -1 * WOW_THRESHOLD;
 }
@@ -83,7 +84,7 @@ var wheel = {
     segments: [1500, 150, 50, 350, 5000, 100, 500, 200, 10, 700, 3, 20, 1, 100000, 0, 350, 2, 99],
     degreesPerSegment: 0,
     currentSegment: null,
-    
+
 
     // Cache of segments to colors
     maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
@@ -106,15 +107,15 @@ var wheel = {
         $(".btn-spin").addClass("push");
         setTimeout(function () {
             if (wheel.timerHandle == 0) {
-            wheel.spinStart = new Date().getTime();
-            wheel.frames = 0;
-            $("#score-container").css("display", "block");
-            
-            
-            wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
+                wheel.spinStart = new Date().getTime();
+                wheel.frames = 0;
+                $("#score-container").css("display", "block");
+
+
+                wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
             }
         }, 175)
-   
+
     },
 
     onTimerTick: function () {
@@ -163,7 +164,7 @@ var wheel = {
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
-            
+
             banner.text(currentSegment);
             banner.removeClass("wowdark");
             var LINGER = 3500;
@@ -176,12 +177,12 @@ var wheel = {
                 winning_sound = winsnd2;
                 winning_sound.volume = 0.35;
                 soundDuration = winning_sound.duration;
-                
+
                 addFadeout = true;
-                
-                if (currentSegment > 3 * WOW_THRESHOLD){
+
+                if (currentSegment > 3 * WOW_THRESHOLD) {
                     addedclass = "wowmega";
-    
+
                     LINGER = 5500;
                 } else {
                     LINGER = 4500;
@@ -192,10 +193,10 @@ var wheel = {
                 //winning_sound = new Audio("sounds/oneCoin.wav");
                 // http://freesound.org/people/FenrirFangs/sounds/213978/ --oneCoin.wav
             }
-            
+
             if (currentSegment > 0) winning_sound.play();
             // Audio fadeout
-            if (addFadeout){
+            if (addFadeout) {
                 var fadeDelay = soundDuration * 1000 * 0.6;
                 var fadeDuration = soundDuration * 1000 * 0.4;
                 var fadeInterval = fadeDuration / 20;
@@ -238,7 +239,7 @@ var wheel = {
     initCanvas: function () {
         var canvas = $('#canvas')[0];
         canvas.addEventListener("click", wheel.spin, false);
-        wheel.setDegreesPerSegment((Math.PI*2) / wheel.segments.length);
+        wheel.setDegreesPerSegment((Math.PI * 2) / wheel.segments.length);
     },
 
 
@@ -287,7 +288,7 @@ var wheel = {
         var arcInDegrees = wheel.getDegreesPerSegment().toDegrees();
         var index = Math.floor((360 - degrees % 360) / arcInDegrees);
         wheel.setCurrentSegment(wheel.segments[index]);
-        
+
     },
 
     drawSegment: function (key, lastAngle, angle) {
@@ -308,14 +309,16 @@ var wheel = {
         wheel.canvasContext.strokeStyle = "#000"
         wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.stroke();
-        
+
         //color
-        if (wheel.colorIncrementor == wheel.colors.length) { wheel.colorIncrementor = 0; }
+        if (wheel.colorIncrementor == wheel.colors.length) {
+            wheel.colorIncrementor = 0;
+        }
         wheel.canvasContext.fillStyle = wheel.colors[wheel.colorIncrementor];
         wheel.colorIncrementor++;
         wheel.canvasContext.fill();
         var gradient = wheel.canvasContext.createRadialGradient(
-            wheel.centerX, wheel.centerY, 70, 
+            wheel.centerX, wheel.centerY, 70,
             wheel.centerX, wheel.centerY, wheel.size);
         gradient.addColorStop("0", "#fff");
         gradient.addColorStop("1", "#000");
@@ -356,23 +359,30 @@ var wheel = {
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
         wheel.canvasContext.closePath();
 
-        wheel.canvasContext.fillStyle = '#f0f';
+        wheel.canvasContext.fillStyle = 'rgba(0, 0, 0, 0.72)';
         wheel.canvasContext.fill();
 
         wheel.canvasContext.beginPath();
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
 
+
+        /*
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.lineWidth = 39;
+        wheel.canvasContext.lineWidth = 19;
         wheel.canvasContext.shadowBlur = 90
-        wheel.canvasContext.shadowColor = '#0fc';
-        wheel.canvasContext.strokeStyle = '##F0FF4D';
+        wheel.canvasContext.shadowColor = '#0fa';
         wheel.canvasContext.shadowOffsetX = 0;
         wheel.canvasContext.shadowOffsetY = 0;
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
         wheel.canvasContext.stroke();
         wheel.canvasContext.stroke();
         wheel.canvasContext.shadowBlur = 0;
+        */
+        wheel.canvasContext.lineWidth = 9;
+        wheel.canvasContext.strokeStyle = '#222';
+        wheel.canvasContext.stroke();
+        
+        
 
         // Draw outer circle
         wheel.canvasContext.beginPath();
@@ -426,5 +436,3 @@ window.onload = function () {
     wheel.update();
 
 }
-
-

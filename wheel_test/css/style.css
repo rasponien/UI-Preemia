@@ -57,9 +57,9 @@ body {
                                     Roulette button
 -----------------------------------------------------------------------------------*/
 .btn-spin {
-    margin: 235px auto;
-    height: 270px;
-    width: 270px;
+    margin: 244px auto;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     border: none;
     background-color: rgba(0, 0, 0, 0.9);
