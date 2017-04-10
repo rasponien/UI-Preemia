@@ -114,7 +114,7 @@ var wheel = {
 
                 wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
             }
-        }, 175)
+        }, 140)
 
     },
 

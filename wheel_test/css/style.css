@@ -123,8 +123,8 @@ body {
     text-decoration: none;
     color: #228DFF;
     transition: 0.7s;
-    -webkit-transition: all 1.5s;
-    -moz-transition: all 1.5s;
+    -webkit-transition: all 1.8s;
+    -moz-transition: all 1.8s;
 }
 
 /**
@@ -136,17 +136,6 @@ banner.css("opacity", 0); kui viimane timeout
 .wowdark {
     opacity: 0;
 }
-
-
-
-/**
-Ei tea mida sellega edasi teha, kustutab ära?
-*/
-img.money_pouch {
-    width: 40px;
-    height: 40px;
-}
-
 
 
 
@@ -215,13 +204,13 @@ javascriptis veel lisatakse seda külge
 .wowactive {
     transition: 0.6s;
     font-size: 200px;
-    -webkit-animation: neon2 0.5s ease-in-out infinite alternate;
-    -moz-animation: neon2 0.5s ease-in-out infinite alternate;
+    -webkit-animation: neon2 0.75s ease-in-out infinite alternate;
+    -moz-animation: neon2 0.75s ease-in-out infinite alternate;
     animation: neon2 0.5s ease-in-out infinite alternate;
     color: #fff;
 }
 .wowmega {
-    transition: 0.4s;
+    transition: 0.5s;
     font-size: 230px;
     animation: neon2mega 0.5s ease-in-out infinite alternate;
     color: #ffd700;
