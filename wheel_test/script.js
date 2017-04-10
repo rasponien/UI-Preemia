@@ -334,7 +334,7 @@ var wheel = {
         wheel.canvasContext.rotate((lastAngle + angle) / 2);
 
         //text style
-        wheel.canvasContext.fillStyle = '#fff';
+        wheel.canvasContext.fillStyle = '#eee';
         wheel.canvasContext.fillText(wheel.segments[key], wheel.size / 2 + 20, 0);
 
         wheel.canvasContext.restore();
