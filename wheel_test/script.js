@@ -103,7 +103,7 @@ var wheel = {
         // deduct spin cost
         $("#balance").text(parseInt($("#balance").text()) - 500);
         // Start the wheel only if it's not already spinning
-        $("#spin-btn").addClass("push");
+        $(".btn-spin").addClass("push");
         setTimeout(function () {
             if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();

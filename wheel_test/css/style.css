@@ -89,6 +89,7 @@ body {
 .btn-spin:focus {
     outline: 0;
 }
+/*
 .btn-spin:active {
     box-shadow: 
         inset 5px 5px 60px #000, 
@@ -102,7 +103,7 @@ body {
     color: #777;
     text-shadow: 0 0 39px #fff;
 }
-
+*/
 
 
 
@@ -155,16 +156,13 @@ Asendasin selle osa hetkel oma nupuga, mis arvad? -
 javascriptis veel lisatakse seda külge
 */
 .push {
-    /*
     animation:pushIn 6s forwards;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     transition: all 1s ease;
-    */
 }
 @keyframes pushIn {
-    /*
     0% {
         transform:scale(1);
     }
@@ -178,7 +176,6 @@ javascriptis veel lisatakse seda külge
         box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
         transform:scale(1);
     }
-    */
 }
 /*-----------------------------------------------------------------------------------*/
 
