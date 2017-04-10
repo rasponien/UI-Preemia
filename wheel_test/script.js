@@ -39,6 +39,14 @@ String.prototype.hashCode = function () {
 Number.prototype.mod = function (n) {
     return ((this % n) + n) % n;
 }
+Number.prototype.toDegrees = function () {
+    return (this * 180) / Math.PI
+    
+}
+
+
+
+
 
 
 // WHEEL!
@@ -73,7 +81,9 @@ var wheel = {
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
     segments: [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 5, 20, 0, 100000, 0, 350, 5, 99],
+    degreesPerSegment: 0,
     currentSegment: null,
+    
 
     // Cache of segments to colors
     maxSpeed: Math.PI * 2 / (16 + Math.floor(Math.random() * (20))),
@@ -213,7 +223,7 @@ var wheel = {
 
     },
 
-    init: function (optionList) {
+    init: function () {
         try {
             wheel.initCanvas();
             wheel.draw();
@@ -224,30 +234,21 @@ var wheel = {
 
     },
     initCanvas: function () {
-        var canvas = $('#wheel-container #canvas')[0];
-        //canvas = document.createElement('canvas');
-        //$(canvas).attr('width', 1000).attr('height', 600).attr('id', 'canvas').appendTo('.wheel');
-        //console.log(canvas)
-        //canvas = $.initElement(canvas);
-        //console.log(wheel.spin)
+        var canvas = $('#canvas')[0];
         canvas.addEventListener("click", wheel.spin, false);
-        wheel.canvasContext = canvas.getContext("2d");
+        wheel.setDegreesPerSegment((Math.PI*2) / wheel.segments.length);
     },
 
 
     // Called when segments have changed
     update: function () {
         var r = 0;
-        wheel.angleCurrent = ((r + 0.5) / wheel.segments.length) * Math.PI * 2;
+        wheel.angleCurrent = (0.5 / wheel.segments.length) * Math.PI * 2;
 
-        var segments = wheel.segments;
-        var len = segments.length;
-        var colors = wheel.colors;
-        var colorLen = colors.length;
         // Generate a color cache (so we have consistant coloring)
         var seg_color = new Array();
-        for (var i = 0; i < len; i++) {
-            seg_color.push(colors[segments[i].toString().hashCode().mod(colorLen)]);
+        for (var i = 0; i < wheel.segments.length; i++) {
+            seg_color.push(wheel.colors[wheel.segments[i].toString().hashCode().mod(wheel.colors.length)]);
             wheel.seg_color = seg_color;
             wheel.draw();
         }
@@ -258,8 +259,6 @@ var wheel = {
         wheel.drawWheel();
         wheel.drawNeedle();
 
-
-
     },
     clear: function () {
         wheel.canvasContext.clearRect(0, 0, 1000, 800);
@@ -268,49 +267,37 @@ var wheel = {
 
         //shape
         wheel.canvasContext.beginPath();
-
         wheel.canvasContext.moveTo(wheel.centerX, wheel.centerY - wheel.size);
         wheel.canvasContext.lineTo(wheel.centerX - 20, wheel.centerY - wheel.size - 10);
         wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY - wheel.size + 30);
         wheel.canvasContext.lineTo(wheel.centerX + 20, wheel.centerY - wheel.size - 10);
-
         wheel.canvasContext.closePath();
-
 
         //style
         wheel.canvasContext.lineWidth = 7;
         wheel.canvasContext.strokeStyle = '#888';
         wheel.canvasContext.stroke();
-
         wheel.canvasContext.fillStyle = '#000';
         wheel.canvasContext.fill();
 
-
-        //logic - which value needle points to
-        var arc = Math.PI / (wheel.segments.length / 2);
-        var degrees = (wheel.angleCurrent * 180 / Math.PI) + 90;
-        var arcInDegrees = arc * 180 / Math.PI;
+        //logic (which value needle points to)
+        var degrees = wheel.angleCurrent.toDegrees() + 90;
+        var arcInDegrees = wheel.getDegreesPerSegment().toDegrees();
         var index = Math.floor((360 - degrees % 360) / arcInDegrees);
         wheel.setCurrentSegment(wheel.segments[index]);
+        
     },
 
     drawSegment: function (key, lastAngle, angle) {
 
-        var segmentValue = wheel.segments[key];
-        var arc = Math.PI / (wheel.segments.length / 2);
-
         wheel.canvasContext.save();
-
 
         //shape
         wheel.canvasContext.beginPath();
-
         wheel.canvasContext.moveTo(wheel.centerX, wheel.centerY);
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.size, lastAngle, angle, false);
         wheel.canvasContext.lineTo(wheel.centerX, wheel.centerY);
-
         wheel.canvasContext.closePath();
-
 
         //style
         wheel.canvasContext.shadowColor = "#000"
@@ -319,37 +306,31 @@ var wheel = {
         wheel.canvasContext.strokeStyle = "#000"
         wheel.canvasContext.shadowBlur = 30;
         wheel.canvasContext.stroke();
-
-
-        //coloring
-        if (wheel.colorIncrementor == wheel.colors.length) {
-            wheel.colorIncrementor = 0;
-        }
+        
+        //color
+        if (wheel.colorIncrementor == wheel.colors.length) { wheel.colorIncrementor = 0; }
         wheel.canvasContext.fillStyle = wheel.colors[wheel.colorIncrementor];
         wheel.colorIncrementor++;
         wheel.canvasContext.fill();
-
         var gradient = wheel.canvasContext.createRadialGradient(
-            wheel.centerX, wheel.centerY, 70, wheel.centerX, wheel.centerY, wheel.size);
+            wheel.centerX, wheel.centerY, 70, 
+            wheel.centerX, wheel.centerY, wheel.size);
         gradient.addColorStop("0", "#fff");
         gradient.addColorStop("1", "#000");
         wheel.canvasContext.lineWidth = 5;
         wheel.canvasContext.strokeStyle = gradient;
         wheel.canvasContext.stroke();
 
-
-
         // draw text
         wheel.canvasContext.save();
         wheel.canvasContext.translate(
-            wheel.centerX + Math.cos(lastAngle + arc / 2) * wheel.textPosFromCenter,
-            wheel.centerY + Math.sin(lastAngle + arc / 2) * wheel.textPosFromCenter);
+            wheel.centerX + Math.cos(lastAngle + wheel.getDegreesPerSegment() / 2) * wheel.textPosFromCenter,
+            wheel.centerY + Math.sin(lastAngle + wheel.getDegreesPerSegment() / 2) * wheel.textPosFromCenter);
         wheel.canvasContext.rotate((lastAngle + angle) / 2);
-
 
         //text style
         wheel.canvasContext.fillStyle = '#fff';
-        wheel.canvasContext.fillText(segmentValue, wheel.size / 2 + 20, 0);
+        wheel.canvasContext.fillText(wheel.segments[key], wheel.size / 2 + 20, 0);
 
         wheel.canvasContext.restore();
     },
@@ -360,7 +341,6 @@ var wheel = {
 
         wheel.canvasContext.textBaseline = "middle";
         wheel.canvasContext.textAlign = "right";
-
         wheel.canvasContext.font = "25px Arial";
         for (var segment = 1; segment <= wheel.segments.length; segment++) {
             var angle = (Math.PI * 2) * (segment / wheel.segments.length) + wheel.angleCurrent;
@@ -392,7 +372,6 @@ var wheel = {
         wheel.canvasContext.stroke();
         wheel.canvasContext.shadowBlur = 0;
 
-
         // Draw outer circle
         wheel.canvasContext.beginPath();
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.size, 0, Math.PI * 2, false);
@@ -410,6 +389,12 @@ var wheel = {
     },
     getCurrentSegment: function () {
         return wheel.currentSegment;
+    },
+    setDegreesPerSegment: function (degreesPerSegment) {
+        wheel.degreesPerSegment = degreesPerSegment;
+    },
+    getDegreesPerSegment: function () {
+        return wheel.degreesPerSegment;
     },
     disableScrolling: function () {
 
@@ -431,7 +416,7 @@ window.onload = function () {
     $("#balance").text("6500");
     wheel.disableScrolling();
     wheel.init();
-    /* diable cancer music
+    /* disable cancer music
     var start_wheel_sound = new Audio("sounds/jackson5.mp3");
     start_wheel_sound.volume=0.1;
 	start_wheel_sound.play();
