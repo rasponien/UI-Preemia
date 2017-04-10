@@ -156,12 +156,30 @@ Asendasin selle osa hetkel oma nupuga, mis arvad? -
 javascriptis veel lisatakse seda külge
 */
 .push {
-    animation:pushIn 0.5s forwards;
+    animation:pushIn 8s forwards;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     transition: all 1s ease;
 }
+.release {
+    transition: 1s;
+    transform: scale(1);
+}
+/*
+@keyframes pushIn {
+    0% {
+        transform:scale(1);
+    }
+
+    80% {
+        transform:scale(0.75);
+    }
+    100% {
+        transform:scale(0.80);
+    }
+}
+*/
 @keyframes pushIn {
     0% {
         transform:scale(1);
@@ -174,13 +192,21 @@ javascriptis veel lisatakse seda külge
         transform:scale(0.75);
     }
     */
-    80% {
+    7% {
         /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
         transform:scale(0.75);
     }
-    100% {
+    9% {
         /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
         transform:scale(0.80);
+    }
+    85% {
+        /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
+        transform:scale(0.80);
+    }
+    100% {
+        /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
+        transform:scale(1);
     }
 }
 /*-----------------------------------------------------------------------------------*/

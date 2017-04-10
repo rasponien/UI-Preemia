@@ -156,7 +156,9 @@ var wheel = {
 
 
         if (finished) {
-            $(".btn-spin").removeClass("push");
+            setTimeout(function () {
+                $(".btn-spin").removeClass("push")
+            }, 1000)
             banner = $(".wow");
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
