@@ -156,7 +156,7 @@ Asendasin selle osa hetkel oma nupuga, mis arvad? -
 javascriptis veel lisatakse seda külge
 */
 .push {
-    animation:pushIn 6s forwards;
+    animation:pushIn 0.5s forwards;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -166,15 +166,21 @@ javascriptis veel lisatakse seda külge
     0% {
         transform:scale(1);
     }
+    /*
     15% {
         -webkit-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
         -moz-box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
         box-shadow: inset 10px 8px 120px 50px rgba(222,218,151,0.32);
         transform:scale(0.75);
     }
+    */
+    80% {
+        /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
+        transform:scale(0.75);
+    }
     100% {
-        box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40);
-        transform:scale(1);
+        /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
+        transform:scale(0.80);
     }
 }
 /*-----------------------------------------------------------------------------------*/

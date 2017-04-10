@@ -80,7 +80,7 @@ var wheel = {
 
     colorIncrementor: 0,
     colors: ['#000', '#f00', '#060'],
-    segments: [100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 100000, 5, 20, 0, 100000, 0, 350, 5, 99],
+    segments: [1500, 150, 50, 350, 5000, 100, 500, 200, 10, 700, 3, 20, 1, 100000, 0, 350, 2, 99],
     degreesPerSegment: 0,
     currentSegment: null,
     
@@ -156,7 +156,7 @@ var wheel = {
 
 
         if (finished) {
-            $("#spin-btn").removeClass("push");
+            $(".btn-spin").removeClass("push");
             banner = $(".wow");
             clearInterval(wheel.timerHandle);
             wheel.timerHandle = 0;
