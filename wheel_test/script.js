@@ -364,7 +364,7 @@ var wheel = {
 
         wheel.canvasContext.beginPath();
         wheel.canvasContext.lineWidth = 39;
-        wheel.canvasContext.shadowBlur = 90
+        wheel.canvasContext.shadowBlur = 90;
         wheel.canvasContext.shadowColor = '#0fc';
         wheel.canvasContext.strokeStyle = '##F0FF4D';
         wheel.canvasContext.shadowOffsetX = 0;
