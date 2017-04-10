@@ -57,9 +57,9 @@ body {
                                     Roulette button
 -----------------------------------------------------------------------------------*/
 .btn-spin {
-    margin: 235px auto;
-    height: 270px;
-    width: 270px;
+    margin: 244px auto;
+    height: 250px;
+    width: 250px;
     border-radius: 50%;
     border: none;
     background-color: rgba(0, 0, 0, 0.9);
@@ -192,11 +192,11 @@ javascriptis veel lisatakse seda külge
         transform:scale(0.75);
     }
     */
-    6% {
+    4% {
         /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
         transform:scale(0.75);
     }
-    8% {
+    5.5% {
         /* box-shadow: inset 10px 8px 120px 50px rgba(20,20,20,0.40); */
         transform:scale(0.80);
     }
