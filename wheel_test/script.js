@@ -354,16 +354,16 @@ var wheel = {
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
         wheel.canvasContext.closePath();
 
-        wheel.canvasContext.fillStyle = '#f00';
+        wheel.canvasContext.fillStyle = '#f0f';
         wheel.canvasContext.fill();
 
         wheel.canvasContext.beginPath();
         wheel.canvasContext.arc(wheel.centerX, wheel.centerY, wheel.innerCircleSize, 0, Math.PI * 2, false);
 
         wheel.canvasContext.beginPath();
-        wheel.canvasContext.lineWidth = 15;
+        wheel.canvasContext.lineWidth = 39;
         wheel.canvasContext.shadowBlur = 90
-        wheel.canvasContext.shadowColor = '#ff0';
+        wheel.canvasContext.shadowColor = '#0fc';
         wheel.canvasContext.strokeStyle = '##F0FF4D';
         wheel.canvasContext.shadowOffsetX = 0;
         wheel.canvasContext.shadowOffsetY = 0;
